@@ -1,6 +1,3 @@
-
-
-
 INSERT INTO CONTATO (id_contato, telefone1, telefone2, telefone3) VALUES (seq_contato.nextval, '27999556241', '27989037606', '27290250274');
 
 INSERT INTO ENDERECO (id_endereco, logradouro, numero, bairro, cidade, estado, cep, complemento) VALUES (seq_endereco.nextval, 'Avenida Presidente Vargas', '180', 'Centro', 'Domingos Martins', 'Espírito Santo', '29260971', 'Ap 101');
