@@ -65,9 +65,6 @@ public class Main {
                     scanner.nextLine();
 
                     Contato contato = new Contato();
-                    System.out.println("Digite o codigo da pessoa para adicionar contato: ");
-                    int index = scanner.nextInt();
-                    scanner.nextLine();
 
                     System.out.println("Digite o Telefone 1: ");
                     contato.setTelefone1(scanner.nextLine());
@@ -75,12 +72,12 @@ public class Main {
                     System.out.println("Deseja inserir o Telefone 2? ('s' para confirmar)");
                     if ("s".equalsIgnoreCase(scanner.nextLine())) {
                         System.out.println("Digite o Telefone 2: ");
-                        contato.setTelefone1(scanner.nextLine());
+                        contato.setTelefone2(scanner.nextLine());
 
                         System.out.println("Deseja inserir o Telefone 3? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
                             System.out.println("Digite o Telefone 3: ");
-                            contato.setTelefone1(scanner.nextLine());
+                            contato.setTelefone3(scanner.nextLine());
                         }
                     }
 
