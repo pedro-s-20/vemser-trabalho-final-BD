@@ -1,3 +1,5 @@
+package com.dbc.model;
+
 public class Convenio {
     private String nome;
     private String cadastroDoConvenioNoOragaoRegulador;

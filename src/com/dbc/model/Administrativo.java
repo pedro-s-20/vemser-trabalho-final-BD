@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package com.dbc.model;
 
 public class Administrativo extends Usuario{
 

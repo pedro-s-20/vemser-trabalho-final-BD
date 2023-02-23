@@ -1,3 +1,5 @@
+package com.dbc.model;
+
 public class Especialidades {
     private String nome;
     private double valor;

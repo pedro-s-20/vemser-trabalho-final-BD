@@ -1,3 +1,5 @@
+package com.dbc.model;
+
 import java.util.ArrayList;
 
 public class Cliente extends Usuario implements Impressao{

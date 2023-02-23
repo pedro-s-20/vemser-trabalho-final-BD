@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package com.dbc.model;
 
 public class Medico extends Usuario{
     private String crm;
