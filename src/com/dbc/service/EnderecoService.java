@@ -59,35 +59,35 @@ public class EnderecoService implements Service<Integer, Endereco>{
 
     @Override
     public boolean validarEntradas(Endereco endereco) {
-        if (endereco.getEstado().length() > 40){
+        if (endereco.getEstado() != null && endereco.getEstado().length() > 40){
             System.err.println("Erro em 'Estado': número de caracteres superior a 40.");
             return false;
         }
-        if (endereco.getCidade().length() > 100){
+        if (endereco.getCidade() != null && endereco.getCidade().length() > 100){
             System.err.println("Erro em 'Cidade': número de caracteres superior a 100.");
             return false;
         }
-        if (endereco.getBairro().length() > 50){
+        if (endereco.getBairro() != null && endereco.getBairro().length() > 50){
             System.err.println("Erro em 'Bairro': número de caracteres superior a 50.");
             return false;
         }
-        if (endereco.getLogradouro().length() > 255){
+        if (endereco.getLogradouro() != null && endereco.getLogradouro().length() > 255){
             System.err.println("Erro em 'Logradouro': número de caracteres superior a 255.");
             return false;
         }
-        if (endereco.getCep().length() != 9){
+        if (endereco.getCep() != null && endereco.getCep().length() != 9){
             System.err.println("Erro em 'CEP': número de caracteres superior ou inferior a 9.");
             return false;
         }
-        if (endereco.getNumero().toString().length() > 8){
+        if (endereco.getNumero() != null && endereco.getNumero().toString().length() > 8){
             System.err.println("Erro em 'Número': número de caracteres superior a 8.");
             return false;
         }
-        if (endereco.getLogradouro().length() > 100){
+        if (endereco.getLogradouro() != null && endereco.getLogradouro().length() > 100){
             System.err.println("Erro em 'Logradouro': número de caracteres superior a 100.");
             return false;
         }
-        if (endereco.getComplemento().length() > 100){
+        if (endereco.getComplemento() != null && endereco.getComplemento().length() > 100){
             System.err.println("Erro em 'Complemento': número de caracteres superior a 100.");
             return false;
         }

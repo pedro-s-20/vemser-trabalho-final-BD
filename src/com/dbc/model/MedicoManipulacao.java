@@ -22,12 +22,12 @@ public class MedicoManipulacao implements Manipulacao {
         Medico pessoaProcurada = listaDeMedico.get(index);
         pessoaProcurada.setNome(pessoa.getNome());
         pessoaProcurada.setEndereco(pessoa.getEndereco());
-        pessoaProcurada.setTelefone(pessoa.getTelefone());
+        pessoaProcurada.setContato(pessoa.getContato());
         pessoaProcurada.setCrm(pessoa.getCrm());
     }
     public void listar() {
         for (int i = 0; i < listaDeMedico.size(); i++) {
-            System.out.println("id=" + i + " | " + " Nome: " +  listaDeMedico.get(i).getNome() + " | " + " CRM do médico: " + listaDeMedico.get(i).getCrm() +  " Enderço: "  + listaDeMedico.get(i).getEndereco() + " | " + " telefone: " + listaDeMedico.get(i).getTelefone());
+            System.out.println("id=" + i + " | " + " Nome: " +  listaDeMedico.get(i).getNome() + " | " + " CRM do médico: " + listaDeMedico.get(i).getCrm() +  " Enderço: "  + listaDeMedico.get(i).getEndereco().toString() + " | " + " telefone: " + listaDeMedico.get(i).getContato().toString());
         }
     }
 }

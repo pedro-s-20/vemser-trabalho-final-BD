@@ -12,8 +12,6 @@ public abstract class Usuario {
         return idUsuario;
     }
 
-    private String telefone;
-
 
     public String getNome() {
         return nome;

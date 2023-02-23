@@ -22,13 +22,13 @@ public class AdministrativoManipulacao implements Manipulacao {
         Administrativo pessoaProcurada = listaDeAdministrativo.get(index);
         pessoaProcurada.setCodigoDoAdministrativo(pessoa.getCodigoDoAdministrativo());
         pessoaProcurada.setNome(pessoa.getNome());
-        pessoaProcurada.setTelefone(pessoa.getTelefone());
+        pessoaProcurada.setContato(pessoa.getContato());
         pessoaProcurada.setEndereco(pessoa.getEndereco());
     }
 
     public void listar() {
         for (int i = 0; i < listaDeAdministrativo.size(); i++) {
-            System.out.println("id=" + i + " | " + " Nome: " +  listaDeAdministrativo.get(i).getNome() + " | " + " Codigo do administrativo: " + listaDeAdministrativo.get(i).getCodigoDoAdministrativo() +  " Enderço: "  + listaDeAdministrativo.get(i).getEndereco() + " | " + " telefone: " + listaDeAdministrativo.get(i).getTelefone());
+            System.out.println("id=" + i + " | " + " Nome: " +  listaDeAdministrativo.get(i).getNome() + " | " + " Codigo do administrativo: " + listaDeAdministrativo.get(i).getCodigoDoAdministrativo() +  " Enderço: "  + listaDeAdministrativo.get(i).getEndereco().toString() + " | " + " telefone: " + listaDeAdministrativo.get(i).getContato().toString());
         }
     }
 

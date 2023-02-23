@@ -223,6 +223,7 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco>{
 
     private Endereco getEnderecoFromResultSet(ResultSet res) throws SQLException {
         Endereco endereco = new Endereco();
+        endereco.setIdEndereco(res.getInt("id_endereco"));
         endereco.setEstado(res.getString("estado"));
         endereco.setCidade(res.getString("cidade"));
         endereco.setBairro(res.getString("bairro"));

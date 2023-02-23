@@ -22,14 +22,14 @@ public class ClienteManipulacao implements Manipulacao {
         Cliente pessoaProcurada = listaDeCliente.get(index);
         pessoaProcurada.setCpf(pessoa.getCpf());
         pessoaProcurada.setNome(pessoa.getNome());
-        pessoaProcurada.setTelefone(pessoa.getTelefone());
+        pessoaProcurada.setContato(pessoa.getContato());
         pessoaProcurada.setEndereco(pessoa.getEndereco());
     }
 
     public void listar() {
         for (int i = 0; i < listaDeCliente.size(); i++) {
             //this.imprimir();
-            System.out.println("id=" + i + " | " + " Nome: " +  listaDeCliente.get(i).getNome() + " | " + " CPF: " + listaDeCliente.get(i).getCpf() +  " Enderço: "  + listaDeCliente.get(i).getEndereco() + " | " + " telefone: " +listaDeCliente.get(i).getTelefone());
+            System.out.println("id=" + i + " | " + " Nome: " +  listaDeCliente.get(i).getNome() + " | " + " CPF: " + listaDeCliente.get(i).getCpf() +  " Enderço: "  + listaDeCliente.get(i).getEndereco().toString() + " | " + " telefone: " +listaDeCliente.get(i).getContato().toString());
         }
     }
 
