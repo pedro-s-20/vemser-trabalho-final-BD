@@ -35,8 +35,6 @@ public class ContatoRepository implements Repositorio<Integer, Contato> {
             Integer proximoId = this.getProximoId(con);
             contato.setIdContato(proximoId);
 
-//            String sql = ?, ?, ?, ?)\n";
-
             StringBuilder sql = new StringBuilder();
             sql.append("INSERT INTO CONTATO\n" +
                     "(id_contato, telefone1," );
@@ -206,43 +204,6 @@ public class ContatoRepository implements Repositorio<Integer, Contato> {
             }
         }
     }
-
-//    public List<Contato> listarContatosPorPessoa(Integer idPessoa) throws BancoDeDadosException {
-//        List<Contato> contatos = new ArrayList<>();
-//        Connection con = null;
-//        try {
-//            con = ConexaoBancoDeDados.getConnection();
-//
-//
-//            String sql = "SELECT C.*, " +
-//                    "            P.NOME AS NOME_PESSOA " +
-//                    "       FROM CONTATO C " +
-//                    " INNER JOIN PESSOA P ON (P.ID_PESSOA = C.ID_PESSOA) " +
-//                    "      WHERE C.ID_PESSOA = ? ";
-//
-//            // Executa-se a consulta
-//            PreparedStatement stmt = con.prepareStatement(sql);
-//            stmt.setInt(1, idPessoa);
-//
-//            ResultSet res = stmt.executeQuery();
-//
-//            while (res.next()) {
-//                Contato contato = getContatoFromResultSet(res);
-//                contatos.add(contato);
-//            }
-//            return contatos;
-//        } catch (SQLException e) {
-//            throw new BancoDeDadosException(e.getCause());
-//        } finally {
-//            try {
-//                if (con != null) {
-//                    con.close();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
     private Contato getContatoFromResultSet(ResultSet res) throws SQLException {
         Contato contato = new Contato();

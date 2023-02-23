@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public abstract class Usuario {
     private int idUsuario;
     private String nome;
-    private String endereco;
+    private Endereco endereco;
+    private Contato contato;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -22,20 +23,24 @@ public abstract class Usuario {
         this.nome = nome;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public Contato getContato() {
+        return contato;
+    }
+
+    public void setContato(Contato contato) {
+        this.contato = contato;
     }
 
 
