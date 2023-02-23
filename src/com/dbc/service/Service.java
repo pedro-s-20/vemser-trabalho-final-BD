@@ -1,0 +1,18 @@
+package com.dbc.service;
+
+import com.dbc.model.Endereco;
+
+public interface Service<CHAVE, OBJETO>{
+
+
+    void adicionar(OBJETO object);
+
+    void remover(CHAVE id);
+
+    void editar(CHAVE id, OBJETO object);
+
+    void listar();
+
+    boolean validarEntradas(OBJETO object);
+
+}

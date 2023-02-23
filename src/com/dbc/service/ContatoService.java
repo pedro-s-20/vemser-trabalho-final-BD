@@ -2,17 +2,19 @@ package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Contato;
+import com.dbc.model.Endereco;
 import com.dbc.repository.ContatoRepository;
 
-public class ContatoService {
+public class ContatoService implements Service<Integer, Contato>{
     private ContatoRepository contatoRepository;
 
     public ContatoService() {
         contatoRepository = new ContatoRepository();
     }
 
+    @Override
     // criação de um objeto
-    public void adicionarContato(Contato contato) {
+    public void adicionar(Contato contato) {
         try {
             if (validarEntradas(contato)) {
                 Contato contatoAdicionado = contatoRepository.adicionar(contato);
@@ -25,6 +27,7 @@ public class ContatoService {
         }
     }
 
+    @Override
     // remoção
     public void remover(Integer id) {
         try {
@@ -35,6 +38,7 @@ public class ContatoService {
         }
     }
 
+    @Override
     // atualização de um objeto
     public void editar(Integer id, Contato contato) {
         try {
@@ -47,6 +51,7 @@ public class ContatoService {
         }
     }
 
+    @Override
     // leitura
     public void listar() {
         try {
@@ -56,7 +61,8 @@ public class ContatoService {
         }
     }
 
-    private boolean validarEntradas(Contato contato) {
+    @Override
+    public boolean validarEntradas(Contato contato) {
         if (!(contato.getTelefone1().length() <= 11 && contato.getTelefone1().length() >= 10)){
             System.err.println("Erro em 'Telefone 1'! Número inválido!");
             return false;
