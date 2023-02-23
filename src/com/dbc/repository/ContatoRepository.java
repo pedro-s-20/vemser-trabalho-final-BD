@@ -183,7 +183,7 @@ public class ContatoRepository implements Repositorio<Integer, Contato> {
             con = ConexaoBancoDeDados.getConnection();
             Statement stmt = con.createStatement();
 
-            String sql = "SELECT *, " +
+            String sql = "SELECT * " +
                     "       FROM CONTATO C " ;
 
             // Executa-se a consulta
