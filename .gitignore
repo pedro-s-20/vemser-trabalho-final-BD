@@ -2,3 +2,5 @@
 /.idea
 /src/out
 /.DS_Store
+/*.iml
+/**/*.iml
