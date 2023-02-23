@@ -3,15 +3,37 @@ package com.dbc.model;
 import java.util.ArrayList;
 
 public abstract class Usuario {
-    private int idUsuario;
+    private Integer idUsuario;
+    private String cpf;
+    private String email;
     private String nome;
-    private Endereco endereco;
-    private Contato contato;
+    private String senha;
+    private Integer idEndereco;
+    private Integer idContato;
 
-    public int getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getNome() {
         return nome;
@@ -21,25 +43,28 @@ public abstract class Usuario {
         this.nome = nome;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public Integer getIdEndereco() {
+        return idEndereco;
     }
 
-    public Contato getContato() {
-        return contato;
+    public void setIdEndereco(Integer id_endereco) {
+        this.idEndereco = idEndereco;
     }
 
-    public void setContato(Contato contato) {
-        this.contato = contato;
+    public Integer getIdContato() {
+        return idContato;
     }
 
+    public void setIdContato(Integer id_contato) {
+        this.idContato = idContato;
+    }
 
 }
