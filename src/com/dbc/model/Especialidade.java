@@ -1,0 +1,31 @@
+package com.dbc.model;
+
+public class Especialidades {
+    private Integer idEspecialidade;
+    private double valor;
+    private String nome;
+
+    public Integer getIdEspecialidade() {
+        return idEspecialidade;
+    }
+
+    public void setIdEspecialidade(Integer idEspecialidade) {
+        this.idEspecialidade = idEspecialidade;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+}
