@@ -91,7 +91,7 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
 
             // Executa-se a consulta
             int res = stmt.executeUpdate();
-            System.out.println("removerConvenioPorId.res=" + res);
+            System.out.println("removerClientePorId.res=" + res);
 
             return res > 0;
         } catch (SQLException e) {
