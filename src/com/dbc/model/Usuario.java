@@ -67,4 +67,13 @@ public abstract class Usuario {
         this.idContato = idContato;
     }
 
+    @Override
+    public String toString() {
+        return "nome = '" +
+                getNome()+"', " +
+                "cpf = '" +
+                getCpf()+"', " +
+                "email = '" +
+                getEmail()+"'";
+    }
 }

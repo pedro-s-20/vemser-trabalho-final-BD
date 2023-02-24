@@ -39,10 +39,10 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
                     "(id_usuario, cpf, email, nome, senha,");
 
 
-            if (usuario.getCpf()!= null) {
+            if (usuario.getIdEndereco()!= null) {
                 sql.append(" id_endereco,");
             }
-            if (usuario.getEmail() != null) {
+            if (usuario.getIdContato()!= null) {
                 sql.append(" id_contato,");
             }
 
@@ -90,12 +90,104 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
 
     @Override
     public boolean remover(Integer id) throws BancoDeDadosException {
-        return false;
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "DELETE FROM USUARIO WHERE ID_USUARIO = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, id);
+
+            // Executa-se a consulta
+            int res = stmt.executeUpdate();
+            System.out.println("removerUsuarioPorId.res=" + res);
+
+            return res > 0;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public boolean editar(Integer id, Usuario usuario) throws BancoDeDadosException {
-        return false;
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            Integer proximoId = this.getProximoId(con);
+            usuario.setIdUsuario(proximoId);
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("UPDATE USUARIO SET");
+
+            if (usuario.getCpf()!= null) {
+                sql.append(" cpf = ?,");
+            }
+            if (usuario.getEmail()!= null) {
+                sql.append(" email = ?,");
+            }
+            if (usuario.getNome() != null) {
+                sql.append(" nome = ?,");
+            }
+            if (usuario.getSenha()!= null) {
+                sql.append(" senha = ?,");
+            }
+            if (usuario.getIdEndereco()!= null) {
+                sql.append(" id_endereco,");
+            }
+            if (usuario.getIdContato() != null) {
+                sql.append(" id_contato,");
+            }
+
+            sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
+            sql.append(" where id_usuario = ?");
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            int index = 1;
+            if (usuario.getCpf()!= null) {
+                stmt.setString(index++, usuario.getCpf());
+            }
+            if (usuario.getEmail()!= null) {
+                stmt.setString(index++, usuario.getEmail());
+            }
+            if (usuario.getNome() != null) {
+                stmt.setString(index++, usuario.getNome());
+            }
+            if (usuario.getSenha()!= null) {
+                stmt.setString(index++, usuario.getSenha());
+            }
+            if (usuario.getIdEndereco()!= null) {
+                stmt.setInt(index++, usuario.getIdEndereco());
+            }
+            if (usuario.getIdContato() != null) {
+                stmt.setInt(index++, usuario.getIdContato());
+            }
+
+            stmt.setInt(index, id);
+            int res = stmt.executeUpdate();
+            System.out.println("editarrUsuario.res=" + res);
+            return res > 0;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
