@@ -5,6 +5,7 @@ import com.dbc.model.Agendamento;
 
 import java.sql.*;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class AgendamentoRepository implements Repositorio<Integer, Agendamento>{
             }
 
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
-            sql.append(") values(?, ?, ?, ?,");
+            sql.append(") values(?, ?, ?, TO_DATE('?', 'yyyy-mm-dd hh24:mi'),");
             if (agendamento.getTratamento() != null) {
                 sql.append(" ?,");
             }
@@ -66,8 +67,13 @@ public class AgendamentoRepository implements Repositorio<Integer, Agendamento>{
             stmt.setInt(2, agendamento.getIdMedico());
             stmt.setInt(3, agendamento.getIdCliente());
 
-            Date dataAgendamentoSQL = (Date) Date.from(agendamento.getDataHorario().atZone(ZoneId.systemDefault()).toInstant());
-            stmt.setDate(4, dataAgendamentoSQL);
+           // java.sql.Time sqlTDate = java.sql.Time.valueOf(String.valueOf(agendamento.getDataHorario().toLocalDate()));
+            //Date dataAgendamentoSQL = Date.from(sqlDate.atZone(ZoneId.systemDefault()).toInstant());
+
+            //Time dataAgendamentoSQL = Time.from(sqlTDate.atZone(ZoneId.systemDefault()).toInstant());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            stmt.setString(4, agendamento.getDataHorario().format(formatter));
+
 
             if (agendamento.getTratamento() != null) {
                 stmt.setString(index++, agendamento.getTratamento());

@@ -33,6 +33,10 @@ public class Main {
                     MedicoView.exibirMenu();
                     break;
                 }
+                case 3: {
+                    AgendamentoView.exibirMenu();
+                    break;
+                }
                 case 4: {
                     AdministrativoView.exibirMenu();
                     break;

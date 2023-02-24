@@ -8,9 +8,11 @@ public class AgendamentoService implements Service<Integer, Agendamento>{
 
     private AgendamentoRepository agendamentoRepository;
 
-    public AgendamentoService(AgendamentoRepository agendamentoRepository) {
-        this.agendamentoRepository = agendamentoRepository;
+    public AgendamentoService() {
+        this.agendamentoRepository = new AgendamentoRepository();
     }
+
+
 
     @Override
     public void adicionar(Agendamento agendamento) {
