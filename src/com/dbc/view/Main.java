@@ -1,8 +1,5 @@
 package com.dbc.view;
 
-import com.dbc.model.Medico;
-import com.dbc.service.ClienteService;
-
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 

@@ -2,9 +2,8 @@ package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Cliente;
-import com.dbc.model.Usuario;
 import com.dbc.repository.ClienteRepository;
-import com.dbc.repository.EnderecoRepository;
+
 
 public class ClienteService implements Service<Integer, Cliente>{
     private ClienteRepository clienteRepository;

@@ -2,10 +2,8 @@ package com.dbc.repository;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Agendamento;
-import com.dbc.model.Cliente;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
