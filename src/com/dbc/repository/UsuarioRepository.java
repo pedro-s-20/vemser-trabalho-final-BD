@@ -126,9 +126,6 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
         try {
             con = ConexaoBancoDeDados.getConnection();
 
-            Integer proximoId = this.getProximoId(con);
-            usuario.setIdUsuario(proximoId);
-
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE USUARIO SET");
 

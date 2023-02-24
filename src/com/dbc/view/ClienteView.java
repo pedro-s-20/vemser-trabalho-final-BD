@@ -1,8 +1,10 @@
 package com.dbc.view;
 
+import com.dbc.model.Cliente;
 import com.dbc.model.Endereco;
 import com.dbc.service.ClienteService;
-import com.dbc.service.EnderecoService;
+import com.dbc.service.ConvenioService;
+import com.dbc.service.UsuarioService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -11,7 +13,8 @@ public class ClienteView {
     public static void exibirMenu(){
         Scanner scanner = new Scanner(System.in);
         ClienteService clienteService = new ClienteService();
-
+        UsuarioService usuarioService = new UsuarioService();
+        ConvenioService convenioService = new ConvenioService();
         int opcao = -1;
 
         while (opcao != 0) {
@@ -26,6 +29,21 @@ public class ClienteView {
 
                 case 1: {
                     // adição Cliente
+                    Cliente cliente = new Cliente();
+
+                    usuarioService.listar();
+                    System.out.println("Digite o código de Usuário:");
+                    cliente.setIdUsuario(scanner.nextInt());
+
+                    scanner = new Scanner(System.in);
+                    System.out.println("Cliente possui convênio? ('s' para confirmar)");
+                    if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                        convenioService.listar();
+                        System.out.println("Escolha um convênio: ");
+                        cliente.setIdConvenio(scanner.nextInt());
+                    }
+
+                    clienteService.adicionar(cliente);
                     break;
                 }
                 case 2: {
@@ -35,61 +53,34 @@ public class ClienteView {
                 }
                 case 3: {
                     // edição
-                    System.out.println("Qual endereço você deseja editar?");
+                    System.out.println("Qual cliemte você deseja editar?");
                     clienteService.listar();
                     int id = scanner.nextInt();
-                    scanner.nextLine();
 
-                    Endereco endereco = new Endereco();
+                    Cliente cliente = new Cliente();
 
-                    System.out.println("Deseja editar um cidade? ('s' para confirmar)");
+                    scanner = new Scanner(System.in);
+                    System.out.println("Deseja trocar os dados para outro Usuário? ('s' para confirmar)");
                     if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                        System.out.println("Digite a cidade: ");
-                        endereco.setCidade(scanner.nextLine());
+                        usuarioService.listar();
+                        System.out.println("Escolha o registtro de Usuário: ");
+                        cliente.setIdUsuario(scanner.nextInt());
                     }
 
-                    System.out.println("Deseja editar um estado? ('s' para confirmar)");
+                    scanner = new Scanner(System.in);
+                    System.out.println("Deseja trocar o Convênio? ('s' para confirmar)");
                     if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                        System.out.println("Digite a estado: ");
-                        endereco.setEstado(scanner.nextLine());
+                        convenioService.listar();
+                        System.out.println("Escolha o registro de convênio: ");
+                        cliente.setIdConvenio(scanner.nextInt());
                     }
 
-                    System.out.println("Deseja editar um rua? ('s' para confirmar)");
-                    if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                        System.out.println("Digite a rua: ");
-                        endereco.setLogradouro(scanner.nextLine());
-                    }
-
-                    System.out.println("Deseja editar um número? ('s' para confirmar)");
-                    if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                        System.out.println("Digite o número: ");
-                        endereco.setNumero(scanner.nextInt());
-                        scanner.nextLine();
-                    }
-
-                    System.out.println("Deseja editar um bairro? ('s' para confirmar)");
-                    if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                        System.out.println("Digite o bairro: ");
-                        endereco.setBairro(scanner.nextLine());
-                    }
-
-                    System.out.println("Deseja editar um CEP? ('s' para confirmar)");
-                    if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                        System.out.println("Digite a CEP: ");
-                        endereco.setCep(scanner.nextLine());
-                    }
-                    System.out.println("Deseja editar um complemento? ('s' para confirmar)");
-                    if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                        System.out.println("Digite o complemento: ");
-                        endereco.setComplemento(scanner.nextLine());
-                    }
-
-                    clienteService.editar(id, endereco);
+                    clienteService.editar(id, cliente);
                     break;
                 }
                 case 4: {
                     // exclusão
-                    System.out.println("Qual endereço você deseja excluir?");
+                    System.out.println("Qual cliente você deseja excluir?");
                     clienteService.listar();
                     boolean validouNumero = false;
                     while (!validouNumero) {

@@ -31,7 +31,7 @@ public class Cliente{
 
     @Override
     public String toString() {
-        return "Cliente {" + super.toString() + "," +
-                " id_convenio = '"+getIdConvenio()+"'}";
+        return String.format("Cliente {id_cliente = %d, id_usuario = %d, id_convenio = %d}"
+                , getIdCliente(), getIdUsuario(), getIdConvenio());
     }
 }

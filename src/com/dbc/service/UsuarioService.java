@@ -14,8 +14,8 @@ public class UsuarioService implements Service <Integer, Usuario>{
     public void adicionar(Usuario usuario) {
         try {
             if (validarEntradas(usuario)) {
-                Usuario enderecoAdicionado = usuarioRepository.adicionar(usuario);
-                System.out.println("endereço adicinado com sucesso! " + enderecoAdicionado);
+                Usuario usuarioAdicionado = usuarioRepository.adicionar(usuario);
+                System.out.println("Usuário adicinado com sucesso! " + usuarioAdicionado);
             }
         } catch (BancoDeDadosException e) {
             e.printStackTrace();

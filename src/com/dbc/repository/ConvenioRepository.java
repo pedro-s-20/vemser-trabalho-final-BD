@@ -99,9 +99,6 @@ public class ConvenioRepository implements Repositorio<Integer, Convenio> {
         try {
             con = ConexaoBancoDeDados.getConnection();
 
-            Integer proximoId = this.getProximoId(con);
-            convenio.setIdConvenio(proximoId);
-
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE CONVENIO SET ");
 
