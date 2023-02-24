@@ -8,6 +8,9 @@ public class AdministrativoService implements Service<Integer, Administrativo>{
 
     private AdministrativoRepository administrativoRepository;
 
+    public AdministrativoService(){
+        administrativoRepository = new AdministrativoRepository();
+    }
 
     @Override
     public void adicionar(Administrativo administrativo) {
@@ -58,7 +61,7 @@ public class AdministrativoService implements Service<Integer, Administrativo>{
 
     @Override
     public boolean validarEntradas(Administrativo administrativo) {
-        if(administrativo.getIdUsuario() < 1 || administrativo.getIdUsuario() > 10){
+        if(administrativo.getIdUsuario() < 1 || administrativo.getIdUsuario().toString().length() > 10){
             System.err.println("Erro em 'Código usuário'! Id inválido!");
             return false;
         }

@@ -31,8 +31,16 @@ public class Main {
                     ClienteView.exibirMenu();
                     break;
                 }
+                case 4: {
+                    AdministrativoView.exibirMenu();
+                    break;
+                }
                 case 5: {
                     ConvenioView.exibirMenu();
+                    break;
+                }
+                case 6: {
+                    EspecialidadeView.exibirMenu();
                     break;
                 }
                 case 7: {

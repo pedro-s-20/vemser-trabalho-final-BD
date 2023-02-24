@@ -2,15 +2,17 @@ package com.dbc.view;
 
 import com.dbc.model.Administrativo;
 import com.dbc.service.AdministrativoService;
+import com.dbc.service.UsuarioService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AdministrativoView {
 
-    public static void exibirMenu(){
+    public static void exibirMenu() {
         Scanner scanner = new Scanner(System.in);
         AdministrativoService administrativoService = new AdministrativoService();
+        UsuarioService usuarioService = new UsuarioService();
 
         int opcao = -1;
 
@@ -29,7 +31,7 @@ public class AdministrativoView {
                     Administrativo administrativo = new Administrativo();
 
                     System.out.println("Escolha um usuário: ");
-                    administrativoService.listar();
+                    usuarioService.listar();
                     System.out.println("Digite o id do usuário que deseja vincular ao novo administrador: ");
                     administrativo.setIdUsuario(scanner.nextInt());
                     scanner.nextLine();
@@ -44,14 +46,14 @@ public class AdministrativoView {
                 }
                 case 3: {
                     // edição
-                    System.out.println("Qual administrador você deseja editar?");
+                    System.out.println("Digite o id do administrador você deseja editar: ");
                     administrativoService.listar();
                     int id = scanner.nextInt();
                     scanner.nextLine();
 
                     Administrativo administrativo = new Administrativo();
                     System.out.println("Escolha um usuário: ");
-                    administrativoService.listar();
+                    usuarioService.listar();
                     System.out.println("Digite o id do usuário que deseja vincular ao novo administrador: ");
                     administrativo.setIdUsuario(scanner.nextInt());
                     scanner.nextLine();
@@ -85,5 +87,6 @@ public class AdministrativoView {
                     break;
             }
         }
+    }
 
 }

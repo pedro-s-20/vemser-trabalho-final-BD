@@ -1,6 +1,6 @@
 package com.dbc.model;
 
-public class Especialidades {
+public class Especialidade {
     private Integer idEspecialidade;
     private double valor;
     private String nome;

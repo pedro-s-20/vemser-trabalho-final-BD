@@ -34,7 +34,7 @@ public class AdministrativoRepository implements Repositorio<Integer, Administra
             con = ConexaoBancoDeDados.getConnection();
 
             Integer proximoId = this.getProximoId(con);
-            administrativo.setIdUsuario(proximoId);
+            administrativo.setIdAdministrativo(proximoId);
 
             StringBuilder sql = new StringBuilder();
             sql.append("INSERT INTO ADMINISTRATIVO\n" +
@@ -104,7 +104,7 @@ public class AdministrativoRepository implements Repositorio<Integer, Administra
             PreparedStatement stmt = con.prepareStatement(sql.toString());
 
             stmt.setInt(1, administrativo.getIdUsuario());
-            stmt.setInt(2, administrativo.getIdAdministrativo());
+            stmt.setInt(2, id);
 
             // Executa-se a consulta
             int res = stmt.executeUpdate();

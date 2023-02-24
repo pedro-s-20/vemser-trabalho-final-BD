@@ -23,7 +23,9 @@ public class Administrativo{
 
     @Override
     public String toString(){
-        return "Administrativo{idUsuario='" +
+        return "Administrativo{idAdministrativo='" +
+                getIdAdministrativo() + "\'" +
+                ", idUsuario='" +
                 getIdUsuario() +"\'}";
     }
 

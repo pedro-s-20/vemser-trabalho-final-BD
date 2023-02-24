@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EspecialidadeView {
-    public static void menuContato() {
+    public static void exibirMenu() {
         Scanner scanner = new Scanner(System.in);
         EspecialidadeService especialidadeService = new EspecialidadeService();
 
