@@ -1,37 +1,39 @@
 package com.dbc.model;
 
 public class Convenio {
-    private String nome;
-    private String cadastroDoConvenioNoOragaoRegulador;
-    private double taxaDeAbatimentoNaConsulta;
+    private Integer idConvenio;
+    private String cadastroOragaoRegulador;
 
+    private Double taxaAbatimento;
 
-
-    public Convenio(){
-
+    public Integer getIdConvenio() {
+        return idConvenio;
     }
 
-    public String getNome() {
-        return nome;
+    public void setIdConvenio(Integer idConvenio) {
+        this.idConvenio = idConvenio;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getCadastroOragaoRegulador() {
+        return cadastroOragaoRegulador;
     }
 
-    public String getCadastroDoConvenioNoOragaoRegulador() {
-        return cadastroDoConvenioNoOragaoRegulador;
+    public void setCadastroOragaoRegulador(String cadastroOragaoRegulador) {
+        this.cadastroOragaoRegulador = cadastroOragaoRegulador;
     }
 
-    public void setCadastroDoConvenioNoOragaoRegulador(String cadastroDoConvenioNoOragaoRegulador) {
-        this.cadastroDoConvenioNoOragaoRegulador = cadastroDoConvenioNoOragaoRegulador;
+    public Double getTaxaAbatimento() {
+        return taxaAbatimento;
     }
 
-    public double getTaxaDeAbatimentoNaConsulta() {
-        return taxaDeAbatimentoNaConsulta;
+    public void setTaxaAbatimento(Double taxaAbatimento) {
+        this.taxaAbatimento = taxaAbatimento;
     }
 
-    public void setTaxaDeAbatimentoNaConsulta(double taxaDeAbatimentoNaConsulta) {
-        this.taxaDeAbatimentoNaConsulta = taxaDeAbatimentoNaConsulta;
+    @Override
+    public String toString() {
+        return String.format("Convenio {id_convenio = %d, cadastro_orgao_regulador = %s, taxa_abatimento = %.2f}"
+                , getIdConvenio(), getCadastroOragaoRegulador(), getTaxaAbatimento());
+
     }
 }

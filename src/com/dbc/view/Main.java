@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //18/10/2020
         int opcao = -1;
@@ -30,6 +31,10 @@ public class Main {
                     ClienteView.exibirMenu();
                     break;
                 }
+                case 5: {
+                    ConvenioView.exibirMenu();
+                    break;
+                }
                 case 7: {
                     ContatoView.exibirMenu();
                     break;
@@ -51,6 +56,7 @@ public class Main {
                     break;
             }
         }
+
 
 
     }

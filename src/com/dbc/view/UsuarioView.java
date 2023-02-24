@@ -68,7 +68,7 @@ public class UsuarioView {
                 }
                 case 3: {
                     // edição
-                    System.out.println("Qual endereço você deseja editar?");
+                    System.out.println("Qual usuário você deseja editar?");
                     usuarioService.listar();
                     int id = scanner.nextInt();
                     scanner.nextLine();
@@ -121,7 +121,7 @@ public class UsuarioView {
                 }
                 case 4: {
                     // exclusão
-                    System.out.println("Qual endereço você deseja excluir?");
+                    System.out.println("Qual usuário você deseja excluir?");
                     usuarioService.listar();
                     boolean validouNumero = false;
                     while (!validouNumero) {

@@ -1,9 +1,7 @@
 package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
-import com.dbc.model.Endereco;
 import com.dbc.model.Usuario;
-import com.dbc.repository.EnderecoRepository;
 import com.dbc.repository.UsuarioRepository;
 
 public class UsuarioService implements Service <Integer, Usuario>{
