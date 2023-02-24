@@ -1,9 +1,11 @@
 package com.dbc.repository;
 
 import com.dbc.exceptions.BancoDeDadosException;
+import com.dbc.model.Contato;
 import com.dbc.model.Usuario;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioRepository implements Repositorio<Integer, Usuario> {
@@ -47,11 +49,11 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
             }
 
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
-            sql.append(") values(?, ?, ?, ?, ?");
-            if (usuario.getCpf() != null) {
+            sql.append(") values(?, ?, ?, ?, ?,");
+            if (usuario.getIdEndereco() != null) {
                 sql.append("?,");
             }
-            if (usuario.getEmail() != null) {
+            if (usuario.getIdContato() != null) {
                 sql.append("?,");
             }
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
@@ -143,10 +145,10 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
                 sql.append(" senha = ?,");
             }
             if (usuario.getIdEndereco()!= null) {
-                sql.append(" id_endereco,");
+                sql.append(" id_endereco = ?,");
             }
             if (usuario.getIdContato() != null) {
-                sql.append(" id_contato,");
+                sql.append(" id_contato = ?,");
             }
 
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
@@ -192,6 +194,45 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
 
     @Override
     public List<Usuario> listar() throws BancoDeDadosException {
-        return null;
+        List<Usuario> usuarios = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+            Statement stmt = con.createStatement();
+
+            String sql = "SELECT * " +
+                    "       FROM USUARIO " ;
+
+            // Executa-se a consulta
+            ResultSet res = stmt.executeQuery(sql);
+
+            while (res.next()) {
+                Usuario usuario = getUsuarioFromResultSet(res);
+                usuarios.add(usuario);
+            }
+            return usuarios;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Usuario getUsuarioFromResultSet(ResultSet res) throws SQLException {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(res.getInt("id_usuario"));
+        usuario.setNome(res.getString("nome"));
+        usuario.setCpf(res.getString("cpf"));
+        usuario.setEmail(res.getString("email"));
+        usuario.setSenha(res.getString("senha"));
+        usuario.setIdEndereco(res.getInt("id_endereco"));
+        usuario.setIdContato(res.getInt("id_contato"));
+        return usuario;
     }
 }

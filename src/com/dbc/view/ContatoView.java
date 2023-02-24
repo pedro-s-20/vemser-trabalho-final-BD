@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ContatoView {
-    public static void menuContato(){
+    public static void exibirMenu(){
         Scanner scanner = new Scanner(System.in);
         ContatoService contatoService = new ContatoService();
 

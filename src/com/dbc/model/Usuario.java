@@ -2,14 +2,9 @@ package com.dbc.model;
 
 import java.util.ArrayList;
 
-public abstract class Usuario {
-    private Integer idUsuario;
-    private String cpf;
-    private String email;
-    private String nome;
-    private String senha;
-    private Integer idEndereco;
-    private Integer idContato;
+public class Usuario {
+    private Integer idUsuario, idEndereco, idContato;
+    private String cpf, email, nome, senha;
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -55,25 +50,39 @@ public abstract class Usuario {
         return idEndereco;
     }
 
-    public void setIdEndereco(Integer id_endereco) {
-        this.idEndereco = idEndereco;
+    public void setIdEndereco(Integer idEndereco) {
+        if (idEndereco == 0) {
+            this.idEndereco = null;
+        }  else {
+            this.idEndereco = idEndereco;
+        }
     }
 
     public Integer getIdContato() {
         return idContato;
     }
 
-    public void setIdContato(Integer id_contato) {
-        this.idContato = idContato;
+    public void setIdContato(Integer idContato) {
+        if (idContato == 0) {
+            this.idContato = null;
+        }  else {
+            this.idContato = idContato;
+        }
     }
 
     @Override
     public String toString() {
-        return "nome = '" +
+        return  "Usuario {id_usuario = '" + getIdUsuario() +
+                "', nome = '" +
                 getNome()+"', " +
                 "cpf = '" +
                 getCpf()+"', " +
                 "email = '" +
-                getEmail()+"'";
+                getEmail()+"', " +
+                "idEndereco = " +
+                getIdEndereco() +
+                ", idContato = " +
+                getIdContato() + " }"
+                ;
     }
 }

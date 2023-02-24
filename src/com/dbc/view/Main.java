@@ -1,5 +1,7 @@
 package com.dbc.view;
 
+import com.dbc.service.ClienteService;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -19,16 +21,25 @@ public class Main {
             System.out.println("[6] - Especialidade");
             System.out.println("[7] - Contato");
             System.out.println("[8] - Endereço");
+            System.out.println("[9] - Usuario");
             System.out.println("Digite 0 para sair");
             opcao = scanner.nextInt();
             scanner.nextLine();
             switch (opcao) {
+                case 1: {
+                    ClienteView.exibirMenu();
+                    break;
+                }
                 case 7: {
-                    ContatoView.menuContato();
+                    ContatoView.exibirMenu();
                     break;
                 }
                 case 8: {
-                    EnderecoView.menuContato();
+                    EnderecoView.exibirMenu();
+                    break;
+                }
+                case 9: {
+                    UsuarioView.exibirMenu();
                     break;
                 }
 
