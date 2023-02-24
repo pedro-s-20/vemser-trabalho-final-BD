@@ -28,4 +28,13 @@ public class Especialidade {
     public void setValor(double valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "Especialidade{" +
+                "idEspecialidade=" + idEspecialidade +
+                ", valor=" + valor +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
 }

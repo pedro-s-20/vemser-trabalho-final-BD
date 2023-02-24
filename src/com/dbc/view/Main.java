@@ -1,5 +1,6 @@
 package com.dbc.view;
 
+import com.dbc.model.Medico;
 import com.dbc.service.ClienteService;
 
 import java.time.format.DateTimeFormatter;
@@ -29,6 +30,10 @@ public class Main {
             switch (opcao) {
                 case 1: {
                     ClienteView.exibirMenu();
+                    break;
+                }
+                case 2: {
+                    MedicoView.exibirMenu();
                     break;
                 }
                 case 4: {

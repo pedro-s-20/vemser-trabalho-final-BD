@@ -12,7 +12,7 @@ public class EspecialidadeRepository implements Repositorio<Integer, Especialida
     @Override
     public Integer getProximoId(Connection connection) throws BancoDeDadosException {
         try {
-            String sql = "SELECT seq_contato.nextval mysequence from DUAL";
+            String sql = "SELECT seq_especialidade.nextval mysequence from DUAL";
             Statement stmt = connection.createStatement();
             ResultSet res = stmt.executeQuery(sql);
 
