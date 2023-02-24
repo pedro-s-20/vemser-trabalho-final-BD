@@ -1,16 +1,30 @@
 package com.dbc.model;
 
-public class Administrativo extends Usuario{
+public class Administrativo{
 
-    private String codigoDoAdministrativo;
-    public Administrativo(){
+    private Integer idAdministrativo;
+    private Integer idUsuario;
+
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public String getCodigoDoAdministrativo() {
-        return codigoDoAdministrativo;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public void setCodigoDoAdministrativo(String codigoDoAdministrativo) {
-        this.codigoDoAdministrativo = codigoDoAdministrativo;
+    public Integer getIdAdministrativo() {
+        return idAdministrativo;
     }
+
+    public void setIdAdministrativo(Integer idAdministrativo) {
+        this.idAdministrativo = idAdministrativo;
+    }
+
+    @Override
+    public String toString(){
+        return "Administrativo{idUsuario='" +
+                getIdUsuario() +"\'}";
+    }
+
 }
