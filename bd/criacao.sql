@@ -1,5 +1,5 @@
 CREATE TABLE ENDERECO (
-	id_endereco NUMBER(10) PRIMARY KEY,
+	id_endereco NUMBER(9) PRIMARY KEY,
 	estado VARCHAR2(40) NOT NULL,
 	cidade VARCHAR2(100) NOT NULL,
 	bairro VARCHAR2(50) NOT NULL, 
@@ -7,75 +7,75 @@ CREATE TABLE ENDERECO (
 	cep CHAR(9) NOT NULL,
 	numero NUMBER(8) NOT NULL,
 	complemento VARCHAR2(100)			
-)
+);
 
 CREATE TABLE CONTATO (
-	id_contato NUMBER(10) PRIMARY KEY,
+	id_contato NUMBER(9) PRIMARY KEY,
 	telefone1 VARCHAR2(11) NOT NULL,
 	telefone2 VARCHAR2(11),
 	telefone3 VARCHAR2(11)
 );
 
 CREATE TABLE USUARIO (
-	id_usuario NUMBER(10) PRIMARY KEY,
+	id_usuario NUMBER(9) PRIMARY KEY,
 	cpf CHAR(11) UNIQUE NOT NULL,
 	email VARCHAR2(300) NOT NULL UNIQUE,
 	nome VARCHAR2(255) NOT NULL,
 	senha VARCHAR2(300) NOT NULL,
 	tipo NUMBER(1) NOT NULL,
-	id_endereco NUMBER(10),
-	id_contato NUMBER(10),
+	id_endereco NUMBER(9),
+	id_contato NUMBER(9),
 	CONSTRAINT FK_USARIO_CONTATO FOREIGN KEY (id_contato) REFERENCES Contato (id_contato),
 	CONSTRAINT FK_USARIO_ENDERECO FOREIGN KEY (id_endereco) REFERENCES ENDERECO (id_endereco)	
 );
 
 CREATE TABLE ADMINISTRATIVO (
-	id_administrativo NUMBER(10) PRIMARY KEY,
-	id_usuario NUMBER(10) NOT NULL UNIQUE,
+	id_administrativo NUMBER(9) PRIMARY KEY,
+	id_usuario NUMBER(9) NOT NULL UNIQUE,
 	CONSTRAINT FK_ADMINISTRATIVO_USUARIO FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario)
-)
+);
 
 CREATE TABLE CONVENIO (
-	id_convenio NUMBER(10) PRIMARY KEY,
+	id_convenio NUMBER(9) PRIMARY KEY,
 	cadastro_orgao_regulador VARCHAR2(40) NOT NULL,
 	taxa_abatimento DECIMAL(4,2) NOT NULL
-)
+);
 
 CREATE TABLE CLIENTE (
-	id_cliente NUMBER(10) PRIMARY KEY,	
-	id_convenio NUMBER(10),	
-	id_usuario NUMBER(10) NOT NULL UNIQUE,
+	id_cliente NUMBER(9) PRIMARY KEY,	
+	id_convenio NUMBER(9),	
+	id_usuario NUMBER(9) NOT NULL UNIQUE,
 	CONSTRAINT FK_CLIENTE_USUARIO FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),
 	CONSTRAINT FK_CLIENTE_CONVENIO FOREIGN KEY (id_convenio) REFERENCES Convenio (id_convenio)
-)
+);
 
 CREATE TABLE ESPECIALIDADE (
-	id_especialidade NUMBER(10) PRIMARY KEY,
+	id_especialidade NUMBER(9) PRIMARY KEY,
 	valor DECIMAL(10,2) NOT NULL,
 	nome VARCHAR2(60) NOT NULL
-)
+);
 
 
 CREATE TABLE MEDICO (
-	id_medico NUMBER(10) PRIMARY KEY,
+	id_medico NUMBER(9) PRIMARY KEY,
 	crm CHAR(13) UNIQUE NOT NULL,
-	id_especialidade NUMBER(10) NOT NULL,
-	id_usuario NUMBER(10) NOT NULL UNIQUE,
+	id_especialidade NUMBER(9) NOT NULL,
+	id_usuario NUMBER(9) NOT NULL UNIQUE,
 	CONSTRAINT FK_MEDICO_USUARIO FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),
 	CONSTRAINT FK_MEDICO_ESPECIALIDADE FOREIGN KEY (id_especialidade) REFERENCES Especialidade (id_especialidade)
-)
+);
 
 
 CREATE TABLE AGENDAMENTO (
-	id_agendamento NUMBER(10) PRIMARY KEY,	
-	id_cliente NUMBER(10) NOT NULL,
-	id_medico NUMBER(10) NOT NULL,
+	id_agendamento NUMBER(9) PRIMARY KEY,	
+	id_cliente NUMBER(9) NOT NULL,
+	id_medico NUMBER(9) NOT NULL,
 	tratamento VARCHAR2(40),
 	exame VARCHAR2(40),
 	data_horario DATE NOT NULL,
 	CONSTRAINT FK_AGENDAMENTO_MEDICO FOREIGN KEY (id_medico) REFERENCES MEDICO (id_medico),
 	CONSTRAINT FK_AGENDAMENTO_CLIENTE FOREIGN KEY (id_cliente) REFERENCES CLIENTE (id_cliente)
-)
+);
 
 CREATE SEQUENCE seq_endereco
 	START WITH 1
@@ -121,4 +121,5 @@ CREATE SEQUENCE seq_especialidade
 	START WITH 1
 	INCREMENT BY 1
 	NOCACHE NOCYCLE;
+
 
