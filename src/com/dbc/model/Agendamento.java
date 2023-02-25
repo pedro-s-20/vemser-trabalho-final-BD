@@ -1,6 +1,7 @@
 package com.dbc.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Agendamento {
 
@@ -66,7 +67,7 @@ public class Agendamento {
                 ", idMedico=" + idMedico +
                 ", tratamento='" + tratamento + '\'' +
                 ", exame='" + exame + '\'' +
-                ", dataHorario=" + dataHorario +
+                ", dataHorario=" + getDataHorario().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
                 '}';
     }
 
