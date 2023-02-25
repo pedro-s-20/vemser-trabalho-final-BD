@@ -2,6 +2,7 @@ package com.dbc.repository;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Contato;
+import com.dbc.model.TipoUsuario;
 import com.dbc.model.Usuario;
 
 import java.sql.*;
@@ -38,7 +39,7 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
 
             StringBuilder sql = new StringBuilder();
             sql.append("INSERT INTO USUARIO\n" +
-                    "(id_usuario, cpf, email, nome, senha,");
+                    "(id_usuario, cpf, email, nome, senha, tipo,");
 
 
             if (usuario.getIdEndereco()!= null) {
@@ -49,7 +50,7 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
             }
 
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
-            sql.append(") values(?, ?, ?, ?, ?,");
+            sql.append(") values(?, ?, ?, ?, ?, ?,");
             if (usuario.getIdEndereco() != null) {
                 sql.append("?,");
             }
@@ -60,12 +61,13 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
             sql.append(")");
             PreparedStatement stmt = con.prepareStatement(sql.toString());
 
-            int index = 6;
+            int index = 7;
             stmt.setInt(1, usuario.getIdUsuario());
             stmt.setString(2, usuario.getCpf());
             stmt.setString(3, usuario.getEmail());
             stmt.setString(4, usuario.getNome());
             stmt.setString(5, usuario.getSenha());
+            stmt.setInt(6, usuario.getTipoUsuario().getValor());
 
             if (usuario.getIdEndereco() != null) {
                 stmt.setInt(index++, usuario.getIdEndereco());
@@ -127,7 +129,7 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
             con = ConexaoBancoDeDados.getConnection();
 
             StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE USUARIO SET");
+            sql.append("UPDATE USUARIO SET ");
 
             if (usuario.getCpf()!= null) {
                 sql.append(" cpf = ?,");
@@ -146,6 +148,9 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
             }
             if (usuario.getIdContato() != null) {
                 sql.append(" id_contato = ?,");
+            }
+            if (usuario.getTipoUsuario() != null) {
+                sql.append(" tipo = ?,");
             }
 
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','
@@ -171,10 +176,13 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
             if (usuario.getIdContato() != null) {
                 stmt.setInt(index++, usuario.getIdContato());
             }
+            if (usuario.getTipoUsuario() != null) {
+                stmt.setInt(index++, usuario.getTipoUsuario().getValor());
+            }
 
             stmt.setInt(index, id);
             int res = stmt.executeUpdate();
-            System.out.println("editarrUsuario.res=" + res);
+            System.out.println("editarUsuario.res=" + res);
             return res > 0;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
@@ -230,6 +238,15 @@ public class UsuarioRepository implements Repositorio<Integer, Usuario> {
         usuario.setSenha(res.getString("senha"));
         usuario.setIdEndereco(res.getInt("id_endereco"));
         usuario.setIdContato(res.getInt("id_contato"));
+        int tipo = res.getInt("tipo");
+        if(tipo == 1){
+            usuario.setTipoUsuario(TipoUsuario.ADMINISTRATIVO);
+        }else if(tipo == 2){
+            usuario.setTipoUsuario(TipoUsuario.MEDICO);
+        }else {
+            usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+        }
+
         return usuario;
     }
 }

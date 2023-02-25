@@ -2,7 +2,7 @@ INSERT INTO CONTATO (id_contato, telefone1, telefone2, telefone3) VALUES (seq_co
 
 INSERT INTO ENDERECO (id_endereco, logradouro, numero, bairro, cidade, estado, cep, complemento) VALUES (seq_endereco.nextval, 'Avenida Presidente Vargas', '180', 'Centro', 'Domingos Martins', 'Espírito Santo', '29260971', 'Ap 101');
 
-INSERT INTO USUARIO (id_usuario, id_endereco, id_contato, nome, cpf, email, senha) VALUES (seq_usuario.nextval, 1, 1, 'Yago Miguel João Farias', '01572557788', 'yago_miguel_farias@gsw.com.br', 'yagomiguel7788');
+INSERT INTO USUARIO (id_usuario, id_endereco, id_contato, nome, cpf, email, senha, tipo) VALUES (seq_usuario.nextval, 1, 1, 'Yago Miguel João Farias', '01572557788', 'yago_miguel_farias@gsw.com.br', 'yagomiguel7788', '1');
 
 INSERT INTO ADMINISTRATIVO (id_administrativo, id_usuario) VALUES (seq_administrativo.nextval, 1);
 
@@ -12,7 +12,7 @@ INSERT INTO CONTATO (id_contato, telefone1, telefone2, telefone3) VALUES (seq_co
 
 INSERT INTO ENDERECO (id_endereco, logradouro, numero, bairro, cidade, estado, cep, complemento) VALUES (seq_endereco.nextval, 'Praça da Estação', '16', 'Vale da estação', 'Domingos Martins', 'Espírito Santo', '29260971', 'sn');
 
-INSERT INTO USUARIO (id_usuario, id_endereco, id_contato, nome, cpf, email, senha) VALUES (seq_usuario.nextval, 2, 2, 'Luzia Jennifer Fátima Melo', '41624497756', 'luzia_jennifer_melo@mega.com.br', 'luziajennifer7756');
+INSERT INTO USUARIO (id_usuario, id_endereco, id_contato, nome, cpf, email, senha, tipo) VALUES (seq_usuario.nextval, 2, 2, 'Luzia Jennifer Fátima Melo', '41624497756', 'luzia_jennifer_melo@mega.com.br', 'luziajennifer7756', '3');
 
 
 INSERT INTO CONVENIO (id_convenio, cadastro_orgao_regulador, taxa_abatimento) VALUES (seq_convenio.nextval, '357391', 5.2);
@@ -25,7 +25,7 @@ INSERT INTO CONTATO (id_contato, telefone1, telefone2, telefone3) VALUES (seq_co
 
 INSERT INTO ENDERECO (id_endereco, logradouro, numero, bairro, cidade, estado, cep, complemento) VALUES (seq_endereco.nextval, 'Avenida Presidente Vargas', '181', 'Centro', 'Domingos Martins', 'Espírito Santo', '29260971', 'Casa');
 
-INSERT INTO USUARIO (id_usuario, id_endereco, id_contato, nome, cpf, email, senha) VALUES (seq_usuario.nextval, 3, 3, 'Caroline Pietra Melissa Rocha', '56162690776', 'carolinepietrarocha@ferplast.com.br', 'carolinepietrarocha0776');
+INSERT INTO USUARIO (id_usuario, id_endereco, id_contato, nome, cpf, email, senha, tipo) VALUES (seq_usuario.nextval, 3, 3, 'Caroline Pietra Melissa Rocha', '56162690776', 'carolinepietrarocha@ferplast.com.br', 'carolinepietrarocha0776', '2');
 
 
 INSERT INTO ESPECIALIDADE (id_especialidade, nome, valor) VALUES (seq_especialidade.nextval, 'Clínico geral', 500.00);

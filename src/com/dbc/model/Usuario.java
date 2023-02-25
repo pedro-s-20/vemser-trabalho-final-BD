@@ -6,6 +6,16 @@ public class Usuario {
     private Integer idUsuario, idEndereco, idContato;
     private String cpf, email, nome, senha;
 
+    private TipoUsuario tipoUsuario;
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
     public Integer getIdUsuario() {
         return idUsuario;
     }
@@ -78,11 +88,13 @@ public class Usuario {
                 "cpf = '" +
                 getCpf()+"', " +
                 "email = '" +
-                getEmail()+"', " +
-                "idEndereco = " +
+                getEmail()+ "', " +
+                "idEndereco = '" +
                 getIdEndereco() +
-                ", idContato = " +
-                getIdContato() + " }"
-                ;
+                "', idContato = '" +
+                getIdContato() + "'" +
+                ", tipoUsuario = '" +
+                getTipoUsuario() +
+                "'}";
     }
 }

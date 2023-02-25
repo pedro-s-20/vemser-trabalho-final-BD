@@ -1,6 +1,7 @@
 package com.dbc.view;
 
 import com.dbc.model.Endereco;
+import com.dbc.model.TipoUsuario;
 import com.dbc.model.Usuario;
 import com.dbc.service.ContatoService;
 import com.dbc.service.EnderecoService;
@@ -31,6 +32,7 @@ public class UsuarioView {
                 case 1: {
                     // adição Cliente
                     Usuario usuario = new Usuario();
+                    int tipo;
 
                     System.out.println("Digite a nome: ");
                     usuario.setNome(scanner.nextLine());
@@ -58,6 +60,31 @@ public class UsuarioView {
                         usuario.setIdUsuario(scanner.nextInt());
                     }
 
+                    System.out.println("Qual o tipo do usuário?");
+
+                    TipoUsuario[] tipos = TipoUsuario.values();
+
+                    do{
+                        int pos;
+                        for(int i=0; i < tipos.length; i++){
+                            pos = i+1;
+                            System.out.println("["+pos+"] - " + tipos[i]);
+                        }
+                        tipo = scanner.nextInt();
+                        scanner.nextLine();
+                    }while(tipo < 1 || tipo > tipos.length);
+
+                    switch (tipo){
+                        case 1 -> {
+                            usuario.setTipoUsuario(TipoUsuario.ADMINISTRATIVO);
+                        }
+                        case 2 -> {
+                            usuario.setTipoUsuario(TipoUsuario.MEDICO);
+                        }
+                        case 3 -> {
+                            usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+                        }
+                    }
                     usuarioService.adicionar(usuario);
                     break;
                 }
@@ -102,7 +129,7 @@ public class UsuarioView {
 
                     System.out.println("Deseja trocar o Endereço? ('s' para confirmar)");
                     if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                        System.out.println("Escolha o registtro de Endereços: ");
+                        System.out.println("Escolha o registro de Endereços: ");
                         enderecoService.listar();
                         usuario.setIdEndereco(scanner.nextInt());
                     }
@@ -114,6 +141,37 @@ public class UsuarioView {
                         contatoService.listar();
                         scanner = new Scanner(System.in);
                         usuario.setIdContato(scanner.nextInt());
+                        scanner.nextLine();
+                    }
+
+                    System.out.println("Deseja alterar o tipo de usuário? ('s' para confirmar)");
+                    if ("s".equalsIgnoreCase(scanner.nextLine())) {
+
+                        int tipo;
+                        System.out.println("Qual o tipo do usuário?");
+                        TipoUsuario[] tipos = TipoUsuario.values();
+
+                        do{
+                            int pos;
+                            for(int i=0; i < tipos.length; i++){
+                                pos = i+1;
+                                System.out.println("["+ pos +"] - " + tipos[i]);
+                            }
+                            tipo = scanner.nextInt();
+                            scanner.nextLine();
+                        }while(tipo < 1 || tipo > tipos.length);
+
+                        switch (tipo){
+                            case 1 -> {
+                                usuario.setTipoUsuario(TipoUsuario.ADMINISTRATIVO);
+                            }
+                            case 2 -> {
+                                usuario.setTipoUsuario(TipoUsuario.MEDICO);
+                            }
+                            case 3 -> {
+                                usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+                            }
+                        }
                     }
 
                     usuarioService.editar(id, usuario);

@@ -20,9 +20,14 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="88f6bc41-4e00-42a3-90cd-cefb0a3ae6fd" object-ref="schemas/SAUDE/tables/MEDICO" />
+      <object connection-id="88f6bc41-4e00-42a3-90cd-cefb0a3ae6fd" object-ref="schemas/SAUDE/tables/CLIENTE" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="88f6bc41-4e00-42a3-90cd-cefb0a3ae6fd" dataset="SAUDE.CLIENTE" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="88f6bc41-4e00-42a3-90cd-cefb0a3ae6fd" dataset="SAUDE.MEDICO" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="88f6bc41-4e00-42a3-90cd-cefb0a3ae6fd" dataset="SAUDE.USUARIO" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="88f6bc41-4e00-42a3-90cd-cefb0a3ae6fd" dataset="SAUDE.CONVENIO" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="88f6bc41-4e00-42a3-90cd-cefb0a3ae6fd" dataset="SAUDE.ADMINISTRATIVO" active-filter-id="EMPTY_FILTER" />
