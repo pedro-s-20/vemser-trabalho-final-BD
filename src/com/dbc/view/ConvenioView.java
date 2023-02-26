@@ -35,7 +35,7 @@ public class ConvenioView {
 
                         System.out.println("Digite a Taxa de Abatimento: ");
                         convenio.setTaxaAbatimento(scanner.nextDouble());
-                        ValorEntrada.validarEntrada(convenio.getTaxaAbatimento());
+                        ValorEntrada.validarEntrada(convenio.getTaxaAbatimento(), 2, 2);
 
                         convenioService.adicionar(convenio);
                         break;
@@ -69,7 +69,7 @@ public class ConvenioView {
                             contadorDeAlteracoes++;
                             System.out.println("Digite a taxa: ");
                             convenio.setTaxaAbatimento(scanner.nextDouble());
-                            ValorEntrada.validarEntrada(convenio.getTaxaAbatimento());
+                            ValorEntrada.validarEntrada(convenio.getTaxaAbatimento(), 2, 2);
 
                         }
 

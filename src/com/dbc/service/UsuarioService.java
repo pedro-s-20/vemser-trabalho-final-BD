@@ -85,8 +85,8 @@ public class UsuarioService implements Service <Integer, Usuario>{
         ClienteRepository clienteRepository = new ClienteRepository();
 
         try {
-            List<Administrativo> tempListAdministrativos = administrativoRepository.listar().stream().filter(administrativo -> administrativo.getIdUsuario().equals(id)).toList();
-            List<Medico> tempListMedicos = medicoRepository.listar().stream().filter(medico -> medico.getIdUsuario().equals(id)).toList();
+            List<Administrativo> tempListAdministrativos = administrativoRepository.listar().stream().filter(administrativo -> administrativo.getIdUsuario() == id).toList();
+            List<Medico> tempListMedicos = medicoRepository.listar().stream().filter(medico -> medico.getIdUsuario() == id).toList();
             List<Cliente> tempListClientes = clienteRepository.listar().stream().filter(cliente -> cliente.getIdUsuario().equals(id)).toList();
 
 
