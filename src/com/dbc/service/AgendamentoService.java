@@ -59,7 +59,7 @@ public class AgendamentoService implements Service<Integer, Agendamento>{
         }
     }
 
-    @Override
+
     public boolean validarEntradas(Agendamento agendamento) {
         if (agendamento.getIdCliente() != null && agendamento.getIdCliente().toString().length() > 10){
             System.err.println("Erro em 'id_cliente': número de caracteres é superior à 10.");

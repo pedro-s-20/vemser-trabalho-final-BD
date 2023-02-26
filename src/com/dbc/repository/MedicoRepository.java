@@ -1,7 +1,6 @@
 package com.dbc.repository;
 
 import com.dbc.exceptions.BancoDeDadosException;
-import com.dbc.model.Endereco;
 import com.dbc.model.Medico;
 
 import java.sql.*;
@@ -121,7 +120,7 @@ public class MedicoRepository implements Repositorio<Integer, Medico>{
             int index = 1;
 
             if(medico.getCrm() != null){
-                stmt.setString(index++, medico.getCpf());
+                stmt.setString(index++, medico.getCrm());
             }
             if(medico.getIdEspecialidade() != null){
                 stmt.setInt(index++, medico.getIdEspecialidade());

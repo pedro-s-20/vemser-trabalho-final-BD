@@ -60,7 +60,6 @@ public class EspecialidadeService implements Service<Integer, Especialidade> {
         }
     }
 
-    @Override
     public boolean validarEntradas(Especialidade especialidade) {
         if (especialidade.getNome() != null &&
                 !(especialidade.getNome().length() <= 60)){

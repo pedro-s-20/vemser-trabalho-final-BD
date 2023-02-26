@@ -1,6 +1,6 @@
 package com.dbc.model;
 
-public class Medico extends Usuario{
+public class Medico {
     private Integer idMedico;
     private String crm;
     private Integer idEspecialidade;
@@ -31,12 +31,10 @@ public class Medico extends Usuario{
         this.idEspecialidade = idEspecialidade;
     }
 
-    @Override
     public Integer getIdUsuario() {
         return idUsuario;
     }
 
-    @Override
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }

@@ -1,7 +1,5 @@
 package com.dbc.service;
 
-import com.dbc.model.Endereco;
-
 public interface Service<CHAVE, OBJETO>{
 
 
@@ -13,6 +11,6 @@ public interface Service<CHAVE, OBJETO>{
 
     void listar();
 
-    boolean validarEntradas(OBJETO object);
+   // boolean validarEntradas(OBJETO object) throws ValorDeEntradaException;
 
 }

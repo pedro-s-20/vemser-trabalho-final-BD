@@ -16,77 +16,82 @@ public class AdministrativoView {
 
         int opcao = -1;
 
-        while (opcao != 0) {
-            System.out.println("Digite 1 para criar um administrador");
-            System.out.println("Digite 2 para listar um administrador");
-            System.out.println("Digite 3 para editar um administrador");
-            System.out.println("Digite 4 para excluir um administrador");
-            System.out.println("Digite 0 para sair");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
-            switch (opcao) {
+        try {
+            while (opcao != 0) {
+                System.out.println("Digite 1 para criar um administrador");
+                System.out.println("Digite 2 para listar um administrador");
+                System.out.println("Digite 3 para editar um administrador");
+                System.out.println("Digite 4 para excluir um administrador");
+                System.out.println("Digite 0 para sair");
+                opcao = scanner.nextInt();
+                scanner.nextLine();
+                switch (opcao) {
 
-                case 1: {
-                    // adição contato
-                    Administrativo administrativo = new Administrativo();
+                    case 1: {
+                        // adição contato
+                        Administrativo administrativo = new Administrativo();
 
-                    System.out.println("Escolha um usuário: ");
-                    usuarioService.listar();
-                    System.out.println("Digite o id do usuário que deseja vincular ao novo administrador: ");
-                    administrativo.setIdUsuario(scanner.nextInt());
-                    scanner.nextLine();
+                        usuarioService.listar();
+                        System.out.println("Digite o id do usuário que deseja vincular ao novo administrador: ");
+                        administrativo.setIdUsuario(scanner.nextInt());
 
-                    administrativoService.adicionar(administrativo);
-                    break;
-                }
-                case 2: {
-                    // listagem
-                    administrativoService.listar();
-                    break;
-                }
-                case 3: {
-                    // edição
-                    System.out.println("Digite o id do administrador você deseja editar: ");
-                    administrativoService.listar();
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
+                        ValorEntrada.validarEntrada(administrativo.getIdUsuario(), 1, 999999999);
 
-                    Administrativo administrativo = new Administrativo();
-                    System.out.println("Escolha um usuário: ");
-                    usuarioService.listar();
-                    System.out.println("Digite o id do usuário que deseja vincular ao novo administrador: ");
-                    administrativo.setIdUsuario(scanner.nextInt());
-                    scanner.nextLine();
+                        administrativoService.adicionar(administrativo);
 
-                    administrativoService.editar(id, administrativo);
-                    break;
-                }
-                case 4: {
-                    // exclusão
-                    System.out.println("Qual administrador você deseja excluir?");
-                    administrativoService.listar();
-                    boolean validouNumero = false;
-                    while (!validouNumero) {
-                        try {
-                            int id = scanner.nextInt();
-                            administrativoService.remover(id);
-                            if (id <= 0) {
-                                throw new InputMismatchException("Código inválido!");
-                            }
-                            validouNumero = true;
-                        } catch (InputMismatchException ex) {
-                            System.err.println("número invalido");
-                        }
+                        break;
                     }
-                    break;
+                    case 2: {
+                        // listagem
+                        administrativoService.listar();
+                        break;
+                    }
+                    case 3: {
+                        // edição
+                        Administrativo administrativo = new Administrativo();
+
+                        System.out.println("Digite o id do administrador você deseja editar: ");
+                        administrativoService.listar();
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+                        ValorEntrada.validarEntrada(id, 1, 999999999);
+
+                        System.out.println("Escolha um usuário: ");
+                        usuarioService.listar();
+                        System.out.println("Digite o id do usuário que deseja vincular ao novo administrador: ");
+                        administrativo.setIdUsuario(scanner.nextInt());
+                        scanner.nextLine();
+
+                        ValorEntrada.validarEntrada(administrativo.getIdUsuario(), 1, 999999999);
+
+                        administrativoService.editar(id, administrativo);
+                        break;
+                    }
+                    case 4: {
+                        // exclusão
+                        System.out.println("Qual administrador você deseja excluir?");
+                        administrativoService.listar();
+
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+                        ValorEntrada.validarEntrada(id, 1, 999999999);
+                        administrativoService.remover(id);
+
+                        break;
+                    }
+                    case 0:
+                        break;
+                    default:
+                        System.err.println("opção inválida");
+                        break;
                 }
-                case 0:
-                    break;
-                default:
-                    System.err.println("opção inválida");
-                    break;
             }
+        } catch (InputMismatchException e) {
+            e.printStackTrace();
+        } finally {
+            exibirMenu();
         }
+
     }
 
 }

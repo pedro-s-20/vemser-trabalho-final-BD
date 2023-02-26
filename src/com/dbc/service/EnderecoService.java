@@ -4,21 +4,20 @@ import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Endereco;
 import com.dbc.repository.EnderecoRepository;
 
-public class EnderecoService implements Service<Integer, Endereco>{
+public class EnderecoService implements Service<Integer, Endereco> {
 
     private EnderecoRepository enderecoRepository;
 
-    public EnderecoService(){
+    public EnderecoService() {
         enderecoRepository = new EnderecoRepository();
     }
 
     @Override
     public void adicionar(Endereco endereco) {
         try {
-            if (validarEntradas(endereco)) {
-                Endereco enderecoAdicionado = enderecoRepository.adicionar(endereco);
-                System.out.println("endereço adicinado com sucesso! " + enderecoAdicionado);
-            }
+            Endereco enderecoAdicionado = enderecoRepository.adicionar(endereco);
+            System.out.println("endereço adicinado com sucesso! " + enderecoAdicionado);
+
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -39,10 +38,9 @@ public class EnderecoService implements Service<Integer, Endereco>{
     @Override
     public void editar(Integer id, Endereco endereco) {
         try {
-            if (validarEntradas(endereco)){
-                boolean conseguiuEditar = enderecoRepository.editar(id, endereco);
-                System.out.println("editado? " + conseguiuEditar + "| com id=" + id);
-            }
+            boolean conseguiuEditar = enderecoRepository.editar(id, endereco);
+            System.out.println("editado? " + conseguiuEditar + "| com id=" + id);
+
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
@@ -57,42 +55,5 @@ public class EnderecoService implements Service<Integer, Endereco>{
         }
     }
 
-    @Override
-    public boolean validarEntradas(Endereco endereco) {
-        if (endereco.getEstado() != null && endereco.getEstado().length() > 40){
-            System.err.println("Erro em 'Estado': número de caracteres superior a 40.");
-            return false;
-        }
-        if (endereco.getCidade() != null && endereco.getCidade().length() > 100){
-            System.err.println("Erro em 'Cidade': número de caracteres superior a 100.");
-            return false;
-        }
-        if (endereco.getBairro() != null && endereco.getBairro().length() > 50){
-            System.err.println("Erro em 'Bairro': número de caracteres superior a 50.");
-            return false;
-        }
-        if (endereco.getLogradouro() != null && endereco.getLogradouro().length() > 255){
-            System.err.println("Erro em 'Logradouro': número de caracteres superior a 255.");
-            return false;
-        }
-        if (endereco.getCep() != null && endereco.getCep().length() != 9){
-            System.err.println("Erro em 'CEP': número de caracteres superior ou inferior a 9.");
-            return false;
-        }
-        if (endereco.getNumero() != null && endereco.getNumero().toString().length() > 8){
-            System.err.println("Erro em 'Número': número de caracteres superior a 8.");
-            return false;
-        }
-        if (endereco.getLogradouro() != null && endereco.getLogradouro().length() > 100){
-            System.err.println("Erro em 'Logradouro': número de caracteres superior a 100.");
-            return false;
-        }
-        if (endereco.getComplemento() != null && endereco.getComplemento().length() > 100){
-            System.err.println("Erro em 'Complemento': número de caracteres superior a 100.");
-            return false;
-        }
-
-        return true;
-    }
 
 }

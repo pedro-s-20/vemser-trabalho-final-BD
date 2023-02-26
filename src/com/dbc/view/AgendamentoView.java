@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AgendamentoView {
-    public static void exibirMenu(){
+    public static void exibirMenu() {
         Scanner scanner = new Scanner(System.in);
         AgendamentoService agendamentoService = new AgendamentoService();
         MedicoService medicoService = new MedicoService();
@@ -37,6 +37,7 @@ public class AgendamentoView {
                     agendamento.setIdCliente(scanner.nextInt());
                     scanner.nextLine();
 
+
                     medicoService.listar();
                     System.out.println("Digite o código do médico:");
                     agendamento.setIdMedico(scanner.nextInt());
@@ -47,7 +48,7 @@ public class AgendamentoView {
                         System.out.println("Digite a data e horário do agendamento (dd/MM/yyyy HH:mm):");
                         agendamento.setDataHorario(LocalDateTime.parse(scanner.nextLine(), formatter));
 
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         System.err.println("ERRO: digite no formato descrito");
                     }
 
@@ -116,7 +117,7 @@ public class AgendamentoView {
                             System.out.println("Digite a data e horário do agendamento (dd/MM/yyyy HH:mm):");
                             agendamento.setDataHorario(LocalDateTime.parse(scanner.nextLine(), formatter));
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             System.err.println("ERRO: digite no formato descrito");
                         }
                     }
