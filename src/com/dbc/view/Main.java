@@ -81,7 +81,7 @@ public class Main {
             System.out.println("Email: ");
             credenciais[0] = scanner.nextLine();
             System.out.println("Senha: ");
-            credenciais[0] = scanner.nextLine();
+            credenciais[1] = scanner.nextLine();
             Usuario usuario = usuarioService.findUser(credenciais[0], credenciais[1]);
 
             if (usuario != null) {
