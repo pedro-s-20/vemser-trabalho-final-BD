@@ -2,12 +2,15 @@ package com.dbc.repository;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Agendamento;
+import com.dbc.model.TipoUsuario;
+import com.dbc.model.Usuario;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AgendamentoRepository implements Repositorio<Integer, Agendamento>{
@@ -235,6 +238,52 @@ public class AgendamentoRepository implements Repositorio<Integer, Agendamento>{
         agendamento.setDataHorario(LocalDateTime.parse(res.getString("data_horario"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         return agendamento;
+    }
+
+    public List<HashMap<String,String>> mostrarAgendamentosUsuario(Usuario usuarioAtivo) throws BancoDeDadosException {
+
+        List<HashMap<String,String>> listaMaps = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+            Statement stmt = con.createStatement();
+
+            String sql = "SELECT a.data_horario, uc.nome AS nome_cliente, um.nome AS nome_medico, a.tratamento, a.exame " +
+                    "FROM AGENDAMENTO a " +
+                    "INNER JOIN MEDICO m ON (m.id_medico = a.id_medico) " +
+                    "INNER JOIN CLIENTE c ON (c.id_cliente = a.id_cliente) " +
+                    "INNER JOIN Usuario um ON " +
+                    "(um.id_usuario = m.id_usuario)" +
+                    " INNER JOIN Usuario uc ON" +
+                    " (uc.id_usuario = c.id_usuario)" +
+                    "WHERE" + (usuarioAtivo.getTipoUsuario().getValor() == 3 ? " c.id_usuario = " : " m.id_usuario = ") + usuarioAtivo.getIdUsuario() +
+                    " ORDER BY a.data_horario";
+
+            // Executa-se a consulta
+            ResultSet res = stmt.executeQuery(sql);
+
+            while(res.next()){
+                HashMap<String,String> dados = new HashMap<>();
+                dados.put("Data e horário: ", res.getString("data_horario"));
+                dados.put("Nome Cliente: ", res.getString("nome_cliente"));
+                dados.put("Nome Médico: ", res.getString("nome_medico"));
+                dados.put("Tratamento: ", res.getString("tratamento"));
+                dados.put("Exame: ", res.getString("exame"));
+                listaMaps.add(dados);
+            }
+            return listaMaps;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }

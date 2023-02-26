@@ -61,6 +61,7 @@ public class MenuAdministracao {
 
                 case 0:
                     System.out.println("Obrigado por usar o programa!\n\n");
+                    scanner.close();
                     break;
                 default:
                     System.err.println("opção inválida");

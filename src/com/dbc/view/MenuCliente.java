@@ -1,7 +1,44 @@
 package com.dbc.view;
 
-public class MenuCliente {
-    public static void exibirMenu(){
+import com.dbc.model.Usuario;
+import com.dbc.service.AgendamentoService;
 
+import java.util.Scanner;
+
+public class MenuCliente {
+    public static void exibirMenu(Usuario usuarioAtivo){
+        AgendamentoService agendamentoService = new AgendamentoService();
+        Scanner scanner = new Scanner(System.in);
+        int opcao = -1;
+
+        while (opcao != 0) {
+            System.out.println("Escolha uma opção: ");
+            System.out.println("[1] - Meu perfil");
+            System.out.println("[2] - Agendamentos");
+            System.out.println("Digite 0 para sair");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+            switch (opcao) {
+                case 1: {
+                    System.out.println("------------SUAS INFORMAÇÕES------------");
+                    //
+                    System.out.println("----------------------------------------");
+                    break;
+                }
+                case 2: {
+                    System.out.println("------------SEUS AGENDAMENTOS------------");
+                    agendamentoService.mostrarAgendamentosUsuario(usuarioAtivo);
+                    System.out.println("-----------------------------------------");
+                    break;
+                }
+                case 0:
+                    System.out.println("Obrigado por usar o programa!\n\n");
+                    scanner.close();
+                    break;
+                default:
+                    System.err.println("opção inválida");
+                    break;
+            }
+        }
     }
 }
