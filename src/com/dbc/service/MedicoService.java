@@ -2,7 +2,11 @@ package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Medico;
+import com.dbc.model.Usuario;
 import com.dbc.repository.MedicoRepository;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MedicoService implements Service<Integer, Medico> {
     private MedicoRepository medicoRepository;
@@ -49,6 +53,18 @@ public class MedicoService implements Service<Integer, Medico> {
     public void listar() {
         try {
             medicoRepository.listar().forEach(System.out::println);
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mostrarInformacoesMedicoUsuario(Usuario usuarioAtivo){
+        try {
+            HashMap<String,String> informacoes = medicoRepository.mostrarInformacoesMedicoUsuario(usuarioAtivo);
+            for (Map.Entry<String, String> set : informacoes.entrySet()) {
+                System.out.println(set.getKey() + " "
+                        + set.getValue());
+            }
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }

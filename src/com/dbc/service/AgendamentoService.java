@@ -2,7 +2,12 @@ package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Agendamento;
+import com.dbc.model.Usuario;
 import com.dbc.repository.AgendamentoRepository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AgendamentoService implements Service<Integer, Agendamento> {
 
@@ -51,6 +56,21 @@ public class AgendamentoService implements Service<Integer, Agendamento> {
     public void listar() {
         try {
             agendamentoRepository.listar().forEach(System.out::println);
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mostrarAgendamentosUsuario(Usuario usuarioAtivo){
+        try {
+            List<HashMap<String,String>> agendamentos = agendamentoRepository.mostrarAgendamentosUsuario(usuarioAtivo);
+            for (HashMap<String,String> informacoes: agendamentos) {
+                for (Map.Entry<String, String> set : informacoes.entrySet()) {
+                    System.out.println(set.getKey() + " "
+                            + set.getValue());
+                }
+            }
+
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }

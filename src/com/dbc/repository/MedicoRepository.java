@@ -2,9 +2,11 @@ package com.dbc.repository;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Medico;
+import com.dbc.model.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MedicoRepository implements Repositorio<Integer, Medico>{
@@ -190,5 +192,54 @@ public class MedicoRepository implements Repositorio<Integer, Medico>{
         medico.setIdUsuario(res.getInt("id_usuario"));
 
         return medico;
+    }
+
+    public HashMap<String,String> mostrarInformacoesMedicoUsuario(Usuario usuarioAtivo) throws BancoDeDadosException {
+
+        HashMap<String,String> dados = new HashMap<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+            Statement stmt = con.createStatement();
+
+            String sql = "SELECT u.email, u.cpf, u.nome, c.telefone1, e.logradouro, e.numero, e.bairro, e.cidade, e.cep, e.estado, m.crm, es.nome AS especialidade " +
+                    "FROM MEDICO m " +
+                    "INNER JOIN USUARIO u ON (u.id_usuario = m.id_usuario) " +
+                    "INNER JOIN ENDERECO e ON (e.id_endereco = u.id_endereco) " +
+                    "INNER JOIN CONTATO c ON (c.id_contato = u.id_contato) " +
+                    "INNER JOIN ESPECIALIDADE es ON (es.id_especialidade = m.id_especialidade) " +
+                    "WHERE m.id_usuario = " + usuarioAtivo.getIdUsuario() ;
+
+            // Executa-se a consulta
+            ResultSet res = stmt.executeQuery(sql);
+            if(res.next()){
+                dados.put("E-mail: ", res.getString("email"));
+                dados.put("CPF: ", res.getString("cpf"));
+                dados.put("Nome: ", res.getString("nome"));
+                dados.put("Telefone: ", res.getString("telefone1"));
+                dados.put("Logradouro: ", res.getString("logradouro"));
+                dados.put("Número: ", String.valueOf(res.getInt("numero")));
+                dados.put("Bairro: ", res.getString("bairro"));
+                dados.put("Cidade: ", res.getString("cidade"));
+                dados.put("CEP: ", res.getString("cep"));
+                dados.put("Estado: ", res.getString("estado"));
+                dados.put("CRM: ", res.getString("crm"));
+                dados.put("Especialidade:: ", res.getString("especialidade"));
+            }
+
+
+            return dados;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

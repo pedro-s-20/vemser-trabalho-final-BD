@@ -21,16 +21,16 @@ public enum TipoUsuario {
     }
 
 
-    public void exibirMenu(){
+    public void exibirMenu(Usuario usuarioAtivo){
         switch (getValor()) {
             case 1:
                 MenuAdministracao.exibirMenu();
                 break;
             case 2:
-                MenuMedico.exibirMenu();
+                MenuMedico.exibirMenu(usuarioAtivo);
                 break;
             case 3:
-                MenuCliente.exibirMenu();
+                MenuCliente.exibirMenu(usuarioAtivo);
                 break;
         }
     }

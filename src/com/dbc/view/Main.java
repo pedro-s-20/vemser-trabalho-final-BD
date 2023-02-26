@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         Usuario usuarioAtivo = login();
-        usuarioAtivo.getTipoUsuario().exibirMenu();
+        usuarioAtivo.getTipoUsuario().exibirMenu(usuarioAtivo);
     }
 
     public static Usuario login() {
