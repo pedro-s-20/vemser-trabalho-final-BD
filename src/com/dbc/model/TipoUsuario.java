@@ -1,8 +1,14 @@
 package com.dbc.model;
 
+import com.dbc.view.MenuAdministracao;
+import com.dbc.view.MenuCliente;
+import com.dbc.view.MenuMedico;
+
 public enum TipoUsuario {
 
-    ADMINISTRATIVO(1), MEDICO(2), CLIENTE(3);
+    ADMINISTRATIVO(1),
+    MEDICO(2),
+    CLIENTE(3);
 
     private Integer valor;
 
@@ -12,6 +18,21 @@ public enum TipoUsuario {
 
     public Integer getValor(){
         return valor;
+    }
+
+
+    public void exibirMenu(){
+        switch (getValor()) {
+            case 1:
+                MenuAdministracao.exibirMenu();
+                break;
+            case 2:
+                MenuMedico.exibirMenu();
+                break;
+            case 3:
+                MenuCliente.exibirMenu();
+                break;
+        }
     }
 
 
