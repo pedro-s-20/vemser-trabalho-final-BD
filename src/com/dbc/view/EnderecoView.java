@@ -118,7 +118,7 @@ public class EnderecoView {
                             contadorDeAlteracoes++;
                             System.out.println("Digite o bairro: ");
                             endereco.setBairro(scanner.nextLine());
-                            ValorEntrada.validarEntrada(endereco.getLogradouro(), 1, 50);
+                            ValorEntrada.validarEntrada(endereco.getBairro(), 1, 50);
                         }
 
                         System.out.println("Deseja editar um CEP? ('s' para confirmar)");
