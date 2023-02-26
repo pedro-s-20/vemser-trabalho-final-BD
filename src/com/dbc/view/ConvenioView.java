@@ -54,8 +54,10 @@ public class ConvenioView {
 
                         Convenio convenio = new Convenio();
 
+                        Integer contadorDeAlteracoes = 0;
                         System.out.println("Deseja editar o cadastro no orgão regulador? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite o cadastro no orgão regulador: ");
                             convenio.setCadastroOragaoRegulador(scanner.nextLine());
                             ValorEntrada.validarEntrada(convenio.getCadastroOragaoRegulador(), 1, 40);
@@ -63,13 +65,20 @@ public class ConvenioView {
 
                         System.out.println("Deseja editar o taxa de abatimento? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite a taxa: ");
                             convenio.setTaxaAbatimento(scanner.nextDouble());
                             ValorEntrada.validarEntrada(convenio.getTaxaAbatimento());
 
                         }
 
+                        if (contadorDeAlteracoes == 0) {
+                            System.err.println("Nenhuma alteração foi feita.");
+                            break;
+                        }
+
                         convenioService.editar(id, convenio);
+
                         break;
                     }
                     case 4: {
@@ -92,10 +101,8 @@ public class ConvenioView {
                         break;
                 }
             }
-        } catch (
-                InputMismatchException e) {
+        } catch (InputMismatchException e) {
             e.printStackTrace();
-        } finally {
             exibirMenu();
         }
 

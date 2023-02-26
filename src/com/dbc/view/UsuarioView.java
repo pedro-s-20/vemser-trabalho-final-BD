@@ -109,8 +109,10 @@ public class UsuarioView {
 
                         Usuario usuario = new Usuario();
 
+                        Integer contadorDeAlteracoes = 0;
                         System.out.println("Deseja editar o nome? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite o nome: ");
                             usuario.setNome(scanner.nextLine());
                             ValorEntrada.validarEntrada(usuario.getNome(), 1, 255);
@@ -118,6 +120,7 @@ public class UsuarioView {
 
                         System.out.println("Deseja editar o cpf? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite o cpf: ");
                             usuario.setCpf(scanner.nextLine());
                             ValorEntrada.validarEntrada(usuario.getCpf(), 11);
@@ -125,6 +128,7 @@ public class UsuarioView {
 
                         System.out.println("Deseja editar o email? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite o email: ");
                             usuario.setEmail(scanner.nextLine());
                             ValorEntrada.validarEntrada(usuario.getEmail(), 1, 300);
@@ -132,6 +136,7 @@ public class UsuarioView {
 
                         System.out.println("Deseja ALTERAR a senha? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite a  nova senha: ");
                             usuario.setSenha(scanner.nextLine());
                             scanner.nextLine();
@@ -140,6 +145,7 @@ public class UsuarioView {
 
                         System.out.println("Deseja trocar o Endereço? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Escolha o registro de Endereços: ");
                             enderecoService.listar();
                             usuario.setIdEndereco(scanner.nextInt());
@@ -148,6 +154,7 @@ public class UsuarioView {
 
                         System.out.println("Deseja trocar o Contato? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Escolha o registro de contatos: ");
                             contatoService.listar();
                             usuario.setIdContato(scanner.nextInt());
@@ -185,6 +192,11 @@ public class UsuarioView {
                             }
                         }
 
+                        if (contadorDeAlteracoes == 0) {
+                            System.err.println("Nenhuma alteração foi feita.");
+                            break;
+                        }
+
                         usuarioService.editar(id, usuario);
                         break;
                     }
@@ -209,9 +221,7 @@ public class UsuarioView {
             }
         } catch (InputMismatchException e) {
             e.printStackTrace();
-        } finally {
             exibirMenu();
         }
-
     }
 }

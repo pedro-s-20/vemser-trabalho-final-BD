@@ -60,12 +60,15 @@ public class MedicoView {
                         System.out.println("Qual médico você deseja editar?");
                         medicoService.listar();
                         int id = scanner.nextInt();
+                        scanner.nextLine();
                         ValorEntrada.validarEntrada(id, 1, 999999999);
 
                         Medico medico = new Medico();
-                        scanner.nextLine();
+
+                        Integer contadorDeAlteracoes = 0;
                         System.out.println("Deseja trocar os dados para outro Usuário? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             usuarioService.listar();
                             System.out.println("Escolha o registtro de Usuário: ");
                             medico.setIdUsuario(scanner.nextInt());
@@ -76,10 +79,16 @@ public class MedicoView {
                         System.out.println("Deseja trocar a especialidade? ('s' para confirmar)");
                         scanner.nextLine();
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             especialidadeService.listar();
                             System.out.println("Escolha o registro de especialidade: ");
                             medico.setIdEspecialidade(scanner.nextInt());
                             ValorEntrada.validarEntrada(medico.getIdEspecialidade(), 1, 9);
+                        }
+
+                        if (contadorDeAlteracoes == 0) {
+                            System.err.println("Nenhuma alteração foi feita.");
+                            break;
                         }
 
                         medicoService.editar(id, medico);
@@ -106,9 +115,7 @@ public class MedicoView {
             }
         } catch (InputMismatchException e) {
             e.printStackTrace();
-        } finally {
             exibirMenu();
         }
-
     }
 }

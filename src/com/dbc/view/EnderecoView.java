@@ -78,8 +78,10 @@ public class EnderecoView {
 
                         Endereco endereco = new Endereco();
 
+                        Integer contadorDeAlteracoes = 0;
                         System.out.println("Deseja editar um cidade? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite a cidade: ");
                             endereco.setCidade(scanner.nextLine());
                             ValorEntrada.validarEntrada(endereco.getCidade(), 1, 40);
@@ -87,6 +89,7 @@ public class EnderecoView {
 
                         System.out.println("Deseja editar um estado? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite a estado: ");
                             endereco.setEstado(scanner.nextLine());
                             ValorEntrada.validarEntrada(endereco.getEstado(), 1, 100);
@@ -94,6 +97,7 @@ public class EnderecoView {
 
                         System.out.println("Deseja editar um rua? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite a rua: ");
                             endereco.setLogradouro(scanner.nextLine());
                             ValorEntrada.validarEntrada(endereco.getLogradouro(), 1, 255);
@@ -101,6 +105,7 @@ public class EnderecoView {
 
                         System.out.println("Deseja editar um número? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite o número: ");
                             endereco.setNumero(scanner.nextInt());
                             scanner.nextLine();
@@ -109,6 +114,7 @@ public class EnderecoView {
 
                         System.out.println("Deseja editar um bairro? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite o bairro: ");
                             endereco.setBairro(scanner.nextLine());
                             ValorEntrada.validarEntrada(endereco.getLogradouro(), 1, 50);
@@ -116,15 +122,22 @@ public class EnderecoView {
 
                         System.out.println("Deseja editar um CEP? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite a CEP: ");
                             endereco.setCep(scanner.nextLine());
                             ValorEntrada.validarEntrada(endereco.getCep(), 9);
                         }
                         System.out.println("Deseja editar um complemento? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             System.out.println("Digite o complemento: ");
                             endereco.setComplemento(scanner.nextLine());
                             ValorEntrada.validarEntrada(endereco.getComplemento(), 1, 1000);
+                        }
+
+                        if (contadorDeAlteracoes == 0) {
+                            System.err.println("Nenhuma alteração foi feita.");
+                            break;
                         }
 
                         enderecoService.editar(id, endereco);
@@ -151,7 +164,6 @@ public class EnderecoView {
             }
         } catch (InputMismatchException e) {
             e.printStackTrace();
-        } finally {
             exibirMenu();
         }
 

@@ -88,7 +88,6 @@ public class AdministrativoView {
             }
         } catch (InputMismatchException e) {
             e.printStackTrace();
-        } finally {
             exibirMenu();
         }
 

@@ -64,8 +64,10 @@ public class ClienteView {
 
                         Cliente cliente = new Cliente();
 
+                        Integer contadorDeAlteracoes = 0;
                         System.out.println("Deseja trocar os dados para outro Usuário? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             usuarioService.listar();
                             System.out.println("Escolha o registro de Usuário: ");
                             cliente.setIdUsuario(scanner.nextInt());
@@ -75,11 +77,17 @@ public class ClienteView {
 
                         System.out.println("Deseja trocar o Convênio? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
                             convenioService.listar();
                             System.out.println("Escolha o registro de convênio: ");
                             cliente.setIdConvenio(scanner.nextInt());
 
                             ValorEntrada.validarEntrada(cliente.getIdConvenio(), 1, 999999999);
+                        }
+
+                        if (contadorDeAlteracoes == 0) {
+                            System.err.println("Nenhuma alteração foi feita.");
+                            break;
                         }
 
                         clienteService.editar(id, cliente);
@@ -107,7 +115,6 @@ public class ClienteView {
             }
         } catch (InputMismatchException e) {
             e.printStackTrace();
-        } finally {
             exibirMenu();
         }
 

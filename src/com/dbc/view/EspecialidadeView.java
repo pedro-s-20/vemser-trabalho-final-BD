@@ -86,7 +86,6 @@ public class EspecialidadeView {
             }
         } catch (InputMismatchException e) {
             e.printStackTrace();
-        } finally {
             exibirMenu();
         }
 

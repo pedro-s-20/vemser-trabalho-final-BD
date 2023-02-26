@@ -65,24 +65,35 @@ public class ContatoView {
                         ValorEntrada.validarEntrada(id, 1, 999999999);
 
                         Contato contato = new Contato();
-
-                        System.out.println("Digite o Telefone 1: ");
-                        contato.setTelefone1(scanner.nextLine());
-                        ValorEntrada.validarEntrada(contato.getTelefone1(), 10, 11);
-
-                        System.out.println("Deseja inserir o Telefone 2? ('s' para confirmar)");
+                        Integer contadorDeAlteracoes = 0;
+                        System.out.println("Deseja alterar o telefone1? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                            System.out.println("Digite o Telefone 2: ");
+                            contadorDeAlteracoes++;
+                            System.out.println("Digite o novo número de telefone: ");
+                            contato.setTelefone1(scanner.nextLine());
+                            ValorEntrada.validarEntrada(contato.getTelefone1(), 10, 11);
+                        }
+
+                        System.out.println("Deseja alterar o telefone2? ('s' para confirmar)");
+                        if ("s".equalsIgnoreCase(scanner.nextLine())) {
+                            contadorDeAlteracoes++;
+                            System.out.println("Digite o novo número de telefone: ");
                             contato.setTelefone2(scanner.nextLine());
                             ValorEntrada.validarEntrada(contato.getTelefone2(), 10, 11);
 
-                            System.out.println("Deseja inserir o Telefone 3? ('s' para confirmar)");
+                            System.out.println("Deseja alterar o telefone3? ('s' para confirmar)");
                             if ("s".equalsIgnoreCase(scanner.nextLine())) {
-                                System.out.println("Digite o Telefone 3: ");
+                                contadorDeAlteracoes++;
+                                System.out.println("Digite o novo número de telefone: ");
                                 contato.setTelefone3(scanner.nextLine());
                                 ValorEntrada.validarEntrada(contato.getTelefone3(), 10, 11);
 
                             }
+                        }
+
+                        if (contadorDeAlteracoes == 0) {
+                            System.err.println("Nenhuma alteração foi feita.");
+                            break;
                         }
 
                         contatoService.editar(id, contato);
@@ -116,10 +127,8 @@ public class ContatoView {
             }
         } catch (InputMismatchException e) {
             e.printStackTrace();
-        } finally {
             exibirMenu();
         }
-
     }
 
 
