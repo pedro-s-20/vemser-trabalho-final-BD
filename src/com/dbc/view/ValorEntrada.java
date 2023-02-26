@@ -34,25 +34,6 @@ public class ValorEntrada {
 
     }
 
-//    public static void validarEntrada(Double taxa) {
-//        if (taxa < 0 || taxa > 100) {
-//            throw new ValorDeEntradaException("Taxa fora do permitido: " + taxa + ". O número da taxa precisa ser entre " + 0 + " e " + 100 + ".");
-//        }
-//        if (taxa != null) {
-//            if (taxa > 99) {
-//                System.err.println("Erro em 'Taxa de Abatimento': Número inválido como taxa (%)!");
-//            }
-//
-//            Double valorDeEntrada = taxa;
-//            String valorComCasasDividas[] = valorDeEntrada.toString().split("\\.");
-//
-//            if (valorComCasasDividas[0].length() > 2 || (valorComCasasDividas.length == 2 && valorComCasasDividas[1].length() > 2)) {
-//                throw new ValorDeEntradaException("Caracteres inserido número incorreto: " + taxa + ". A taxa precisa ter 4 casas, sendo duas decimais.");
-//            }
-//        }
-//
-//    }
-
     public static void validarEntrada(Double valor, int casasAntesDaVirgula, int casasAposDaVirgula) {
             BigDecimal valorDeEntrada = new BigDecimal(valor).setScale(2, BigDecimal.ROUND_UP);
             String valorComCasasDividas[] = valorDeEntrada.toString().split("\\.");
