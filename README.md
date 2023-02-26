@@ -36,7 +36,7 @@
 ### Diagrama de classes (Estrutura do código)
 
 [//]: # (MUDAR)
-<a href="docs/Diagrama de Classes.png">Clique aqui para visualizar.</a>
+<a href="docs/Diagrama_de_Classes.png">Clique aqui para visualizar.</a>
 
 <hr>
 
