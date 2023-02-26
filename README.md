@@ -41,11 +41,11 @@
 <hr>
 
 #### Vem Ser Trabalho final de Módulo
-# Trello da divisão de tarefas:
+## Trello da divisão de tarefas:
 <p>https://trello.com/b/vdWggPHw/kanban-trabalho-final-mod-2</p>
 
 <hr>
-# Autores
+<h2>Autores</h2> 
 <table>
   <tr>
     <td align="center"><a href="https://github.com/matheus1629"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/89110918?v=4" width="100px;" alt=""/><br /><sub><b>Matheus Palermo</b></sub></a><br /></td>
@@ -54,3 +54,5 @@
   </tr>
 </table>
 
+<hr>
+<p>Este projeto foi baseado no seguinte repositório: https://github.com/DaniloTorquatoUbaldine/vemser-trabalho-final</p>
