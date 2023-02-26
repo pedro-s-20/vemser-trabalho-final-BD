@@ -2,7 +2,11 @@ package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
 import com.dbc.model.Cliente;
+import com.dbc.model.Usuario;
 import com.dbc.repository.ClienteRepository;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ClienteService implements Service<Integer, Cliente> {
@@ -48,6 +52,18 @@ public class ClienteService implements Service<Integer, Cliente> {
     public void listar() {
         try {
             clienteRepository.listar().forEach(System.out::println);
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mostrarInformacoesClienteUsuario(Usuario usuarioAtivo){
+        try {
+            HashMap<String,String> informacoes = clienteRepository.mostrarInformacoesClienteUsuario(usuarioAtivo);
+            for (Map.Entry<String, String> set : informacoes.entrySet()) {
+                System.out.println(set.getKey() + " "
+                        + set.getValue());
+            }
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }

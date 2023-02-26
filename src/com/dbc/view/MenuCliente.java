@@ -2,12 +2,14 @@ package com.dbc.view;
 
 import com.dbc.model.Usuario;
 import com.dbc.service.AgendamentoService;
+import com.dbc.service.ClienteService;
 
 import java.util.Scanner;
 
 public class MenuCliente {
     public static void exibirMenu(Usuario usuarioAtivo){
         AgendamentoService agendamentoService = new AgendamentoService();
+        ClienteService clienteService = new ClienteService();
         Scanner scanner = new Scanner(System.in);
         int opcao = -1;
 
@@ -21,7 +23,7 @@ public class MenuCliente {
             switch (opcao) {
                 case 1: {
                     System.out.println("------------SUAS INFORMAÇÕES------------");
-                    //
+                    clienteService.mostrarInformacoesClienteUsuario(usuarioAtivo);
                     System.out.println("----------------------------------------");
                     break;
                 }
