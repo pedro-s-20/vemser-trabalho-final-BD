@@ -34,7 +34,7 @@ public class EspecialidadeView {
 
                         System.out.println("Digite o valor da especialidade: ");
                         especialidade.setValor(scanner.nextDouble());
-                        ValorEntrada.validarEntrada(especialidade.getValor());
+                        ValorEntrada.validarEntrada(especialidade.getValor(), 8, 2);
 
                         especialidadeService.adicionar(especialidade);
                         break;
@@ -57,7 +57,7 @@ public class EspecialidadeView {
                         System.out.println("Digite o novo valor: ");
                         especialidade.setValor(scanner.nextDouble());
                         scanner.nextLine();
-                        ValorEntrada.validarEntrada(especialidade.getValor());
+                        ValorEntrada.validarEntrada(especialidade.getValor(), 8, 2);
 
                         System.out.println("Digite o novo nome: ");
                         especialidade.setNome(scanner.nextLine());
