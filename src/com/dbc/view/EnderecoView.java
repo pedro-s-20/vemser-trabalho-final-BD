@@ -165,6 +165,8 @@ public class EnderecoView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
+        }finally {
+            scanner.close();
         }
 
     }

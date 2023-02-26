@@ -128,6 +128,8 @@ public class ContatoView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
+        }finally {
+            scanner.close();
         }
     }
 
