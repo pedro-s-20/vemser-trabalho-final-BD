@@ -30,7 +30,7 @@ public class MedicoView {
                 switch (opcao) {
 
                     case 1: {
-                        // adição Cliente
+                        // adição médico
                         Medico medico = new Medico();
 
                         usuarioService.listar();
@@ -75,7 +75,7 @@ public class MedicoView {
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
                             contadorDeAlteracoes++;
                             usuarioService.listar();
-                            System.out.println("Escolha o registtro de Usuário: ");
+                            System.out.println("Escolha o registro de Usuário: ");
                             medico.setIdUsuario(scanner.nextInt());
                             ValorEntrada.validarEntrada(medico.getIdUsuario(), 1, 999999999);
                             if(usuarioService.verificarIdUsuario(medico.getIdUsuario())){
@@ -84,12 +84,12 @@ public class MedicoView {
                         }
 
                         System.out.println("Deseja trocar a especialidade? ('s' para confirmar)");
-                        scanner.nextLine();
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
                             contadorDeAlteracoes++;
                             especialidadeService.listar();
                             System.out.println("Escolha o registro de especialidade: ");
                             medico.setIdEspecialidade(scanner.nextInt());
+                            scanner.nextLine();
                             ValorEntrada.validarEntrada(medico.getIdEspecialidade(), 1, 9);
                         }
 

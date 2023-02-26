@@ -140,7 +140,7 @@ public class UsuarioView {
                             contadorDeAlteracoes++;
                             System.out.println("Digite a  nova senha: ");
                             usuario.setSenha(scanner.nextLine());
-                            scanner.nextLine();
+
                             ValorEntrada.validarEntrada(usuario.getSenha(), 1, 500);
                         }
 
@@ -150,6 +150,7 @@ public class UsuarioView {
                             System.out.println("Escolha o registro de Endereços: ");
                             enderecoService.listar();
                             usuario.setIdEndereco(scanner.nextInt());
+                            scanner.nextLine();
                             ValorEntrada.validarEntrada(usuario.getIdEndereco(), 1, 999999999);
                         }
 
