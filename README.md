@@ -1,5 +1,5 @@
 # SafetySoft
-<h3 > <i> 'Segurança dos dados, e qualidade de vida' </i> </h3>
+<h3> <i> 'Segurança dos dados, e qualidade de vida' </i> </h3>
 <h2 style="text-align: center" >Projeto Java para Agendamento e Gestão de Consultas Médicas</h2>
 
 <p>
@@ -29,26 +29,22 @@
 <hr>
 
 ### Diagrama de Entidade e Relacionamento (Banco de Dados)
-<object data="docs/ER.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="docs/ER.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+<img src="docs/ER.png">
 
 <hr>
 
 ### Diagrama de classes (Estrutura do código)
 
 [//]: # (MUDAR)
-<object data="docs/ER.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="docs/ER.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+<img src="docs/ER.png">
 
 <hr>
 
 #### Vem Ser Trabalho final de Módulo
+# Trello da divisão de tarefas:
+<p>https://trello.com/b/vdWggPHw/kanban-trabalho-final-mod-2</p>
+
+<hr>
 # Autores
 <table>
   <tr>
