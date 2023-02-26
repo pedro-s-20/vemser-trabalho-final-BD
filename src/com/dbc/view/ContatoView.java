@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 public class ContatoView {
     public static void exibirMenu() {
-        Scanner scanner = new Scanner(System.in);
+
         ContatoService contatoService = new ContatoService();
 
         int opcao = -1;
 
         try {
+            Scanner scanner = new Scanner(System.in);
             while (opcao != 0) {
                 System.out.println("Digite 1 para criar contato");
                 System.out.println("Digite 2 para listar contatos");
@@ -128,8 +129,6 @@ public class ContatoView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
-        }finally {
-            scanner.close();
         }
     }
 

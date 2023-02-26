@@ -1,5 +1,6 @@
 package com.dbc.view;
 
+import com.dbc.exceptions.ValorDeEntradaException;
 import com.dbc.model.Cliente;
 import com.dbc.service.ClienteService;
 import com.dbc.service.ConvenioService;
@@ -10,13 +11,14 @@ import java.util.Scanner;
 
 public class ClienteView {
     public static void exibirMenu() {
-        Scanner scanner = new Scanner(System.in);
+
         ClienteService clienteService = new ClienteService();
         UsuarioService usuarioService = new UsuarioService();
         ConvenioService convenioService = new ConvenioService();
         int opcao = -1;
 
         try {
+            Scanner scanner = new Scanner(System.in);
             while (opcao != 0) {
                 System.out.println("Digite 1 para criar Cliente");
                 System.out.println("Digite 2 para listar Cliente");
@@ -38,11 +40,16 @@ public class ClienteView {
 
                         ValorEntrada.validarEntrada(cliente.getIdUsuario(), 1, 999999999);
 
+                        if(usuarioService.verificarIdUsuario(cliente.getIdUsuario())){
+                            throw new ValorDeEntradaException("Usuário já registrado para outro login.");
+                        }
+
                         System.out.println("Cliente possui convênio? ('s' para confirmar)");
                         if ("s".equalsIgnoreCase(scanner.nextLine())) {
                             convenioService.listar();
                             System.out.println("Escolha um convênio: ");
                             cliente.setIdConvenio(scanner.nextInt());
+                            scanner.nextLine();
                             ValorEntrada.validarEntrada(cliente.getIdConvenio(), 1, 999999999);
 
                         }
@@ -71,8 +78,12 @@ public class ClienteView {
                             usuarioService.listar();
                             System.out.println("Escolha o registro de Usuário: ");
                             cliente.setIdUsuario(scanner.nextInt());
-
+                            scanner.nextLine();
                             ValorEntrada.validarEntrada(cliente.getIdUsuario(), 1, 999999999);
+
+                            if(usuarioService.verificarIdUsuario(cliente.getIdUsuario())){
+                                throw new ValorDeEntradaException("Usuário já registrado para outro login.");
+                            }
                         }
 
                         System.out.println("Deseja trocar o Convênio? ('s' para confirmar)");
@@ -81,7 +92,7 @@ public class ClienteView {
                             convenioService.listar();
                             System.out.println("Escolha o registro de convênio: ");
                             cliente.setIdConvenio(scanner.nextInt());
-
+                            scanner.nextLine();
                             ValorEntrada.validarEntrada(cliente.getIdConvenio(), 1, 999999999);
                         }
 
@@ -116,9 +127,6 @@ public class ClienteView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
-        }finally {
-            scanner.close();
         }
-
     }
 }

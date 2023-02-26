@@ -1,5 +1,6 @@
 package com.dbc.view;
 
+import com.dbc.exceptions.ValorDeEntradaException;
 import com.dbc.model.Medico;
 import com.dbc.service.EspecialidadeService;
 import com.dbc.service.MedicoService;
@@ -10,13 +11,14 @@ import java.util.Scanner;
 
 public class MedicoView {
     public static void exibirMenu() {
-        Scanner scanner = new Scanner(System.in);
+
         MedicoService medicoService = new MedicoService();
         UsuarioService usuarioService = new UsuarioService();
         EspecialidadeService especialidadeService = new EspecialidadeService();
         int opcao = -1;
 
         try {
+            Scanner scanner = new Scanner(System.in);
             while (opcao != 0) {
                 System.out.println("Digite 1 para criar Medico");
                 System.out.println("Digite 2 para listar Medicos");
@@ -35,7 +37,10 @@ public class MedicoView {
                         System.out.println("Digite o código do Usuário:");
                         medico.setIdUsuario(scanner.nextInt());
                         scanner.nextLine();
-                        ValorEntrada.validarEntrada(medico.getIdMedico(), 1, 999999999);
+                        ValorEntrada.validarEntrada(medico.getIdUsuario(), 1, 999999999);
+                        if(usuarioService.verificarIdUsuario(medico.getIdUsuario())){
+                            throw new ValorDeEntradaException("Usuário já registrado para outro login.");
+                        }
 
                         System.out.println("Qual seu CRM: ");
                         medico.setCrm(scanner.nextLine());
@@ -73,7 +78,9 @@ public class MedicoView {
                             System.out.println("Escolha o registtro de Usuário: ");
                             medico.setIdUsuario(scanner.nextInt());
                             ValorEntrada.validarEntrada(medico.getIdUsuario(), 1, 999999999);
-
+                            if(usuarioService.verificarIdUsuario(medico.getIdUsuario())){
+                                throw new ValorDeEntradaException("Usuário já registrado para outro login.");
+                            }
                         }
 
                         System.out.println("Deseja trocar a especialidade? ('s' para confirmar)");
@@ -116,8 +123,6 @@ public class MedicoView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
-        }finally {
-            scanner.close();
         }
     }
 }

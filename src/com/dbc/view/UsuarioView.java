@@ -11,13 +11,14 @@ import java.util.Scanner;
 
 public class UsuarioView {
     public static void exibirMenu() {
-        Scanner scanner = new Scanner(System.in);
+
         UsuarioService usuarioService = new UsuarioService();
         EnderecoService enderecoService = new EnderecoService();
         ContatoService contatoService = new ContatoService();
 
         int opcao = -1;
         try {
+            Scanner scanner = new Scanner(System.in);
             while (opcao != 0) {
                 System.out.println("Digite 1 para criar Usuário");
                 System.out.println("Digite 2 para listar Usuário");
@@ -222,8 +223,6 @@ public class UsuarioView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
-        }finally {
-            scanner.close();
         }
     }
 }

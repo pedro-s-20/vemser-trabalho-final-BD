@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 public class ConvenioView {
     public static void exibirMenu() {
-        Scanner scanner = new Scanner(System.in);
+
         ConvenioService convenioService = new ConvenioService();
 
         int opcao = -1;
 
         try {
+            Scanner scanner = new Scanner(System.in);
             while (opcao != 0) {
                 System.out.println("Digite 1 para criar Convênio");
                 System.out.println("Digite 2 para listar Convênio");
@@ -104,8 +105,6 @@ public class ConvenioView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
-        }finally {
-            scanner.close();
         }
 
     }

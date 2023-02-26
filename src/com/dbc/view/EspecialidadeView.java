@@ -8,11 +8,12 @@ import java.util.Scanner;
 
 public class EspecialidadeView {
     public static void exibirMenu() {
-        Scanner scanner = new Scanner(System.in);
+
         EspecialidadeService especialidadeService = new EspecialidadeService();
 
         int opcao = -1;
         try {
+            Scanner scanner = new Scanner(System.in);
             while (opcao != 0) {
                 System.out.println("Digite 1 para criar especialidade");
                 System.out.println("Digite 2 para listar especialidade");
@@ -87,9 +88,6 @@ public class EspecialidadeView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
-        }finally {
-            scanner.close();
         }
-
     }
 }

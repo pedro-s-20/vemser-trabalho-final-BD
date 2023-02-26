@@ -13,13 +13,14 @@ import java.util.Scanner;
 
 public class AgendamentoView {
     public static void exibirMenu() {
-        Scanner scanner = new Scanner(System.in);
+
         AgendamentoService agendamentoService = new AgendamentoService();
         MedicoService medicoService = new MedicoService();
         ClienteService clienteService = new ClienteService();
         int opcao = -1;
 
         try {
+            Scanner scanner = new Scanner(System.in);
             while (opcao != 0) {
                 System.out.println("Digite 1 para criar um agendamento");
                 System.out.println("Digite 2 para listar os agendamentos");
@@ -168,8 +169,6 @@ public class AgendamentoView {
         } catch (InputMismatchException e) {
             e.printStackTrace();
             exibirMenu();
-        }finally {
-            scanner.close();
         }
 
     }
