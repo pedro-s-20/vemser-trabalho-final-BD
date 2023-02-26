@@ -151,7 +151,7 @@ public class MedicoRepository implements Repositorio<Integer, Medico>{
     }
 
     @Override
-    public List listar() throws BancoDeDadosException {
+    public List<Medico> listar() throws BancoDeDadosException {
         List<Medico> listaMedico = new ArrayList<>();
         Connection con = null;
         try {

@@ -1,20 +1,19 @@
 package com.dbc.service;
 
 import com.dbc.exceptions.BancoDeDadosException;
+import com.dbc.model.Administrativo;
+import com.dbc.model.Medico;
 import com.dbc.model.Usuario;
+import com.dbc.model.Cliente;
+import com.dbc.repository.AdministrativoRepository;
+import com.dbc.repository.ClienteRepository;
+import com.dbc.repository.MedicoRepository;
 import com.dbc.repository.UsuarioRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-<<<<<<< HEAD
-public class UsuarioService implements Service<Integer, Usuario> {
-=======
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class UsuarioService implements Service <Integer, Usuario>{
->>>>>>> b2f6331 (wip)
+
     private UsuarioRepository usuarioRepository;
 
     public UsuarioService() {
@@ -64,46 +63,38 @@ public class UsuarioService implements Service <Integer, Usuario>{
         }
     }
 
-<<<<<<< HEAD
-=======
-    @Override
-    public boolean validarEntradas(Usuario usuario) {
-        if (usuario.getCpf() != null && usuario.getCpf().length() != 11){
-            System.err.println("Erro em 'CPF': CPF inválido!");
-            return false;
-        }
-        if (usuario.getNome() != null && usuario.getNome().length() > 255){
-            System.err.println("Erro em 'Nome': número de caracteres superior a 255!");
-            return false;
-        }
-        if (usuario.getEmail() != null && usuario.getEmail().length() > 300){
-            System.err.println("Erro em 'Email': número de caracteres superior a 300!");
-            return false;
-        }
-        if (usuario.getSenha() != null && usuario.getSenha().length() > 500){
-            System.err.println("Erro em 'Senha': número de caracteres superior a 500!");
-            return false;
-        }
-        if (usuario.getIdEndereco() != null && usuario.getIdEndereco().toString().length() > 10){
-            System.err.println("Erro em 'id_endereco': número de caracteres superior ou inferior a 10.");
-            return false;
-        }
-        if (usuario.getIdContato() != null && usuario.getIdContato().toString().length() > 10){
-            System.err.println("Erro em 'id_contato': número de caracteres superior ou inferior a 10.");
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean findAndAuth(String email, String password) {
+    public Usuario findUser(String email, String password) {
         try {
             List<Usuario> tempList = usuarioRepository.listar().stream().filter(usuario -> usuario.getEmail().equals(email)
-                    && usuario.getSenha().equals(password)).collect(Collectors.toList());
-            return tempList.size() > 0;
+                    && usuario.getSenha().equals(password)).toList();
+            if(tempList.size() > 0){
+                return tempList.get(0);
+            }else{
+                return null;
+            }
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean verificarIdUsuario(Integer id) {
+
+        AdministrativoRepository administrativoRepository = new AdministrativoRepository();
+        MedicoRepository medicoRepository = new MedicoRepository();
+        ClienteRepository clienteRepository = new ClienteRepository();
+
+        try {
+            List<Administrativo> tempListAdministrativos = administrativoRepository.listar().stream().filter(administrativo -> administrativo.getIdUsuario().equals(id)).toList();
+            List<Medico> tempListMedicos = medicoRepository.listar().stream().filter(medico -> medico.getIdUsuario().equals(id)).toList();
+            List<Cliente> tempListClientes = clienteRepository.listar().stream().filter(cliente -> cliente.getIdUsuario().equals(id)).toList();
+
+
+            return (tempListAdministrativos.size() + tempListMedicos.size() + tempListClientes.size()) > 0;
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
             return false;
         }
     }
+
 }

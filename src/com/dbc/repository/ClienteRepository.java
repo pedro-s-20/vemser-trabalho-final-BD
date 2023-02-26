@@ -153,7 +153,7 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
     }
 
     @Override
-    public List listar() throws BancoDeDadosException {
+    public List<Cliente> listar() throws BancoDeDadosException {
         List<Cliente> clietes = new ArrayList<>();
         Connection con = null;
         try {

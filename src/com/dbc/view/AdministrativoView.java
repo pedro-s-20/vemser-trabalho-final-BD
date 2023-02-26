@@ -34,10 +34,9 @@ public class AdministrativoView {
                         usuarioService.listar();
                         System.out.println("Digite o id do usuário que deseja vincular ao novo administrador: ");
                         administrativo.setIdUsuario(scanner.nextInt());
+                        scanner.nextLine();
 
                         ValorEntrada.validarEntrada(administrativo.getIdUsuario(), 1, 999999999);
-
-                        administrativoService.adicionar(administrativo);
 
                         break;
                     }

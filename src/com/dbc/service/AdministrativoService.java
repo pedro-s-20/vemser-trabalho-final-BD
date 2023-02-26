@@ -56,4 +56,5 @@ public class AdministrativoService implements Service<Integer, Administrativo> {
         }
     }
 
+
 }

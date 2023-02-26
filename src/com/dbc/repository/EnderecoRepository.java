@@ -190,7 +190,7 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco>{
     }
 
     @Override
-    public List listar() throws BancoDeDadosException {
+    public List<Endereco> listar() throws BancoDeDadosException {
         List<Endereco> enderecos = new ArrayList<>();
         Connection con = null;
         try {
