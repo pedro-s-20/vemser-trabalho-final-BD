@@ -15,10 +15,9 @@ public class EspecialidadeService implements Service<Integer, Especialidade> {
     // criação de um objeto
     public void adicionar(Especialidade especialidade) {
         try {
-            if (validarEntradas(especialidade)) {
-                Especialidade especialidadeAdicionado = especialidadeRepository.adicionar(especialidade);
-                System.out.println("contato adicinado com sucesso! " + especialidadeAdicionado);
-            }
+            Especialidade especialidadeAdicionado = especialidadeRepository.adicionar(especialidade);
+            System.out.println("contato adicinado com sucesso! " + especialidadeAdicionado);
+
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -41,10 +40,9 @@ public class EspecialidadeService implements Service<Integer, Especialidade> {
     // atualização de um objeto
     public void editar(Integer id, Especialidade especialidade) {
         try {
-            if (validarEntradas(especialidade)){
-                boolean conseguiuEditar = especialidadeRepository.editar(id, especialidade);
-                System.out.println("editado? " + conseguiuEditar + "| com id=" + id);
-            }
+            boolean conseguiuEditar = especialidadeRepository.editar(id, especialidade);
+            System.out.println("editado? " + conseguiuEditar + "| com id=" + id);
+
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
@@ -60,13 +58,4 @@ public class EspecialidadeService implements Service<Integer, Especialidade> {
         }
     }
 
-    public boolean validarEntradas(Especialidade especialidade) {
-        if (especialidade.getNome() != null &&
-                !(especialidade.getNome().length() <= 60)){
-            System.err.println("Nome excedeu os 60 caracteres.");
-            return false;
-        }
-
-        return true;
-    }
 }
