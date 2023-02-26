@@ -42,10 +42,10 @@ public class ContatoRepository implements Repositorio<Integer, Contato> {
 
 
             if (contato.getTelefone2() != null) {
-                sql.append(" telefone 2,");
+                sql.append(" telefone2,");
             }
             if (contato.getTelefone3() != null) {
-                sql.append(" telefone 3,");
+                sql.append(" telefone3,");
             }
 
             sql.deleteCharAt(sql.length() - 1); //remove o ultimo ','

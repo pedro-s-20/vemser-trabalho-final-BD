@@ -17,9 +17,13 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             String credenciais[] = new String[2];
             System.out.println("Email: ");
-            credenciais[0] = scanner.nextLine();
+            credenciais[0] =
+                    "yago_miguel_farias@gsw.com.br";
+//                    scanner.nextLine();
             System.out.println("Senha: ");
-            credenciais[1] = scanner.nextLine();
+            credenciais[1] =
+                    "yagomiguel7788";
+//                    scanner.nextLine();
             Usuario usuario = usuarioService.findUser(credenciais[0], credenciais[1]);
 
             if (usuario != null) {
