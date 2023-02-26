@@ -15,7 +15,7 @@ public class Main {
         UsuarioService usuarioService = new UsuarioService();
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            String credenciais[] = new String[2];
+            String[] credenciais = new String[2];
             System.out.println("Por favor, digite suas Credenciais de Login:");
             System.out.println("Email: ");
             credenciais[0] = scanner.nextLine();
